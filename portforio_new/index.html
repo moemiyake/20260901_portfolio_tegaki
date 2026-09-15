@@ -22,92 +22,131 @@
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PR5NB2P3" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PR5NB2P3" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
+    </noscript>
     <!-- End Google Tag Manager (noscript) -->
-     
-    <section class="fixed_menu">
+
+    <!-- <section class="fixed_menu">
         <div class="humburger">
-            <!-- ハンバーガーメニューボタン -->
             <span class="line"></span>
             <span class="line"></span>
         </div>
         <div class="page_name">
             <p>MoeMiyake</p>
         </div>
+    </section> -->
+
+    <header>
+        <!-- SP -->
+        <!-- ハンバーガー -->
+        <button class="header__humburger sp-only" type="btn">
+            <span></span>
+            <span></span>
+        </button>
+        <!-- カード -->
+        <nav class="header__nav sp-only">
+            <ul>
+                <li><a href="index.html">Top</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <h1>MOE MIYAKE</h1>
+        </nav>
+
+        <!-- PC -->
+        <nav class="header__nav pc-only">
+            <ul>
+                <li><a href="index.html">Top</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- FV -->
+    <section class="fv">
+        <div class="fv__box">
+            <div class="fv__name">
+                <!-- SVGにする -->
+                <!-- <img src="img/mv.png" alt="MOE MIYAKE"> -->
+            </div>
+            <img class="fv__house" src="img/house.png" alt="家のイラストと冒頭挨拶「」">
+        </div>
     </section>
 
-    <section class="home">
-        <div class="fv">
-            <div class="name">
-                <img src="img/mv.png" alt="MOE MIYAKE">
+    <!-- Works -->
+    <section class="works">
+        <h2>Works</h2>
+        <div class="work_list">
+            <div class="work_item">
+                <img src="img/work1.png" alt="Work 1">
             </div>
-            <div class="fv_photo">
-                <img class="house" src="img/fv_photo.png" alt="house">
-                <img class="green" src="img/fv_photo.png" alt="green photo">
+            <div class="work_item">
+                <img src="img/work2.png" alt="Work 2">
             </div>
-        </div>
-
-        <div class="works">
-            <h2>Works</h2>
-            <div class="work_list">
-                <div class="work_item">
-                    <img src="img/work1.png" alt="Work 1">
-                </div>
-                <div class="work_item">
-                    <img src="img/work2.png" alt="Work 2">
-                </div>
-                <div class="work_item">
-                    <img src="img/work3.png" alt="Work 3">
-                </div>
-            </div>
-            <div class="more">
-                <p>More</p>
-                <img src="img/arrow.png" alt="arrow">
+            <div class="work_item">
+                <img src="img/work3.png" alt="Work 3">
             </div>
         </div>
+        <div class="works__more">
+            <a class="button button--more" href="">
+                More
+                <img class="button__arrow" src="img/arrow.png" alt="もっと見る">
+            </a>
+        </div>
+    </section>
 
-        <div class="profile">
-            <h2>Profile</h2>
-            <div class="profile_content">
-                <div class="profile_photo">
+    <!-- About -->
+    <section class="about">
+        <h2>About</h2>
+        <div class="about__box">
+            <div class="about__head">
+                <div class="about__img">
                     <img src="img/profile.png" alt="Profile Photo">
                 </div>
-                <div class="profile_name">
-                    <p>三宅 萌（みやけ もえ）</p>
-                    <p>Moe Miyake</p>
-                </div>
-                <div class="profile_text">
-                    <p>
-                        「コツコツやれば何でも作れる」という言葉をモットーに、丁寧かつスピーディに制作をします。<br>
-                        親しみやすさと、ユーザーの心を動かすデザイン制作を目指しています。<br>
-                        <br>
-                        特技は、小さな子供と仲良くなること。
-                    </p>
+                <div class="about__name">
+                    <p class="about__name--ja">三宅 萌（みやけ もえ）</p>
+                    <p class="about__name--en">Moe Miyake</p>
                 </div>
             </div>
-            <div class="more">
-                <p>More</p>
-                <img src="img/arrow.png" alt="arrow">
+            <div class="about__text">
+                <p>
+                    「コツコツやれば何でも作れる」という言葉をモットーに、丁寧かつスピーディに制作をします。<br>
+                    親しみやすさと、ユーザーの心を動かすデザイン制作を目指しています。<br>
+                    <br>
+                    特技は、小さな子供と仲良くなること。
+                </p>
             </div>
         </div>
-
+        <div class="about__more"></div>
+        <a class="button button--more" href="">
+            More
+            <img class="button__arrow" src="img/arrow.png" alt="もっと見る">
+        </a>
+        </div>
     </section>
 
-    <footer>
-        <a class="to_top">
-            <img src="img/to_top.png" alt="To Top">
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- 植木鉢(ページ先頭に戻る) -->
+        <a class="footer__pagetop" href="#">
+            <img src="img/to_top.png" alt="ページ先頭に戻る">
         </a>
-        <div class="footer_menu">
+        <!-- ナビゲーション -->
+        <div class="footer__nav">
             <ul>
                 <li><a href="#">Top</a></li>
                 <li><a href="#">Works</a></li>
                 <li><a href="#">About</a></li>
             </ul>
         </div>
-        <p>© 2026 Moe Miyake</p>
+        <!-- コピーライト -->
+        <small class="footer__copyright">© 2026 Moe Miyake</small>
     </footer>
 
+    <!-- JS -->
     <script src="js/script.js"></script>
 </body>
 
