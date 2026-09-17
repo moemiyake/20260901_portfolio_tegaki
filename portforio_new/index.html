@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="css/destyle.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
@@ -18,6 +26,9 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-PR5NB2P3');</script>
     <!-- End Google Tag Manager -->
+
+    
+
 </head>
 
 <body>
@@ -28,35 +39,25 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- <section class="fixed_menu">
-        <div class="humburger">
-            <span class="line"></span>
-            <span class="line"></span>
-        </div>
-        <div class="page_name">
-            <p>MoeMiyake</p>
-        </div>
-    </section> -->
-
     <header>
         <!-- SP -->
         <!-- ハンバーガー -->
-        <button class="header__humburger sp-only" type="btn">
+        <button class="header__humberger header__humberger--sp" type="button">
             <span></span>
             <span></span>
         </button>
         <!-- カード -->
-        <nav class="header__nav sp-only">
+        <nav class="header__list header__list--sp">
             <ul>
                 <li><a href="index.html">Top</a></li>
                 <li><a href="#works">Works</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
-            <h1>MOE MIYAKE</h1>
+            <h1 class="header__name">MOE MIYAKE</h1>
         </nav>
 
         <!-- PC -->
-        <nav class="header__nav pc-only">
+        <nav class="header__list header__list--pc">
             <ul>
                 <li><a href="index.html">Top</a></li>
                 <li><a href="#works">Works</a></li>
@@ -70,16 +71,19 @@
         <div class="fv__box">
             <div class="fv__name">
                 <!-- SVGにする -->
+                <h1 class="fv__name">MOE MIYAKE</h1>
                 <!-- <img src="img/mv.png" alt="MOE MIYAKE"> -->
             </div>
-            <img class="fv__house" src="img/house.png" alt="家のイラストと冒頭挨拶「」">
+            <img class="fv__house" src="img/fv__house.png"
+                alt="家のイラストと冒頭挨拶「ご覧くださりありがとうございます。「人の手で作る温かさ」を大切にしながら、丁寧に制作します。」">
         </div>
     </section>
 
     <!-- Works -->
     <section class="works">
+
         <h2>Works</h2>
-        <div class="work_list">
+        <!-- <div class="works__list">
             <div class="work_item">
                 <img src="img/work1.png" alt="Work 1">
             </div>
@@ -89,11 +93,89 @@
             <div class="work_item">
                 <img src="img/work3.png" alt="Work 3">
             </div>
+        </div> -->
+
+        <!-- ☆Wordpressと連動して、最新情報を表示させたい。 -->
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="img/works/works__banner_autumn leaves festival.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">四季の森公園 秋祭り</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/works/works__banner_park.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">四季の森公園 秋</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/works/works__site_himitunoyuuenti.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">ひみつの遊園地 Webサイト</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/works/works__site_Vessi.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">Vessi LP</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/abstract-5.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">Slide 5</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/abstract-6.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">Slide 6</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/abstract-7.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">Slide 7</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/abstract-8.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">Slide 8</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://swiperjs.com/demos/images/abstract-9.jpg" />
+                    <div class="works__content">
+                        <h3 class="works__title">Slide 9</h3>
+                        <p class="works__category">Category</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
+
+
+
         <div class="works__more">
             <a class="button button--more" href="">
                 More
-                <img class="button__arrow" src="img/arrow.png" alt="もっと見る">
+                <!-- <img class="button__arrow" src="img/button__arrow.png" alt="もっと見る"> -->
+                <svg role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" ïwidth="57" height="6"
+                    viewBox="0 0 57 6" fill="none">
+                    <path d="M0 4.45806H55.4606L52.2609 0.347198" stroke="#3C3C3C" stroke-width="1" />
+                </svg>
             </a>
         </div>
     </section>
@@ -123,7 +205,11 @@
         <div class="about__more"></div>
         <a class="button button--more" href="">
             More
-            <img class="button__arrow" src="img/arrow.png" alt="もっと見る">
+            <!-- <img class="button__arrow" src="img/arrow.png" alt="もっと見る"> -->
+            <svg role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" ïwidth="57" height="6" viewBox="0 0 57 6"
+                fill="none">
+                <path d="M0 4.45806H55.4606L52.2609 0.347198" stroke="#3C3C3C" stroke-width="1" />
+            </svg>
         </a>
         </div>
     </section>
@@ -135,7 +221,7 @@
             <img src="img/to_top.png" alt="ページ先頭に戻る">
         </a>
         <!-- ナビゲーション -->
-        <div class="footer__nav">
+        <div class="footer__list">
             <ul>
                 <li><a href="#">Top</a></li>
                 <li><a href="#">Works</a></li>
@@ -147,6 +233,7 @@
     </footer>
 
     <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 
