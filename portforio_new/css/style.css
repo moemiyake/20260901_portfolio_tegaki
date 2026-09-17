@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans JP', sans-serif;
-    color: #000;
+    color: #3c3c3c;
 }
 
 html {
@@ -27,23 +27,225 @@ img {
 }
 
 /* SP Fixメニュー */
-.fixed_menu {
+
+/* ハンバーガーボタン (open) */
+.header__humberger {
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 60px;
-    /* background-color: #fff; */
+    height: 70px;
+    padding: 0 10% 0 85%;
     z-index: 10;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     transition: all 0.3s ease-in-out;
 }
 
-.line {
+.header__humberger--sp span {
+    position: relative;
     display: block;
     width: 30px;
     height: 1px;
     background-color: #3c3c3c;
-    margin: 7px auto;
-    transition: all 0.3s ease-in-out;
+    margin: 12px auto;
+}
+
+/* .header__list--sp {
+        カーテンを作る
+    } */
+
+.header__list {
+    display: none;
+}
+
+
+/* ハンバーガーボタン (close) */
+.header__humberger.is-open span:nth-child(1) {
+    transform: rotate(-45deg);
+    top: 6px;
+}
+
+.header__humberger.is-open span:nth-child(2) {
+    transform: rotate(45deg);
+    bottom: 6px;
+}
+
+
+/* FV */
+.fv {
+    position: relative;
+    height: 100vh;
+    background-image: url(../img/fv__background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.fv__name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20vw 10vw 5vw 10vw;
+    width: 100%;
+    font-size: 2rem;
+    text-align: left;
+    background-color: #fff;
+
+}
+
+.fv__box {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fv__house {
+    width: 100%;
+    display: flex;
+    object-fit: cover;
+    margin-top: auto;
+}
+
+/* FV__WORKS */
+
+/* 共通設定に移動？ */
+h2 {
+    /* color: #3C3C3C; */
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-size: 48px;
+    letter-spacing: 1.5px;
+    padding: 0 30px;
+
+    width: 100%;
+}
+
+.works {
+    display: flex;
+    padding: 70px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    align-self: stretch;
+}
+
+.works__list {
+    display: flex;
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.works__more {
+    display: flex;
+    padding: 0 30px;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: stretch;
+}
+
+/* 共通設定に移動？ */
+.button {
+    cursor: pointer;
+}
+
+.button--more {
+    font-family: "Lato", sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* .button__arrow {
+    width: 50px;
+} */
+
+
+
+/* swiper */
+/* Demo styles */
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+
+/* 書き足し */
+.works__swiper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.works__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    padding: 8px 0;
+}
+
+.works__title {
+    /* font-family: "Lato", sans-serif; */
+    font-size: 20px;
+    /* font-weight: 300; */
+    letter-spacing: 3px;
+}
+
+.works__category {
+    color: #B3B3B3;
+    font-family: "Lato", sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+.swiper-wrapper {
+    margin-bottom: 20px;
+    /* 下に余白を追加 */
+}
+
+.swiper-pagination {
+    position: relative;
+    /* デフォルトの位置に戻す */
+    margin-top: 10px;
+    /* 必要に応じて余白を調整 */
+    text-align: center;
+    /* ページネーションを中央揃え */
+}
+
+
+
+
+
+
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
