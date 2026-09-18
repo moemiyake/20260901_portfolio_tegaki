@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/destyle.css">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Google Fonts -->
@@ -13,8 +15,6 @@
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+JP:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap"
         rel="stylesheet">
 
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -27,7 +27,7 @@
         })(window, document, 'script', 'dataLayer', 'GTM-PR5NB2P3');</script>
     <!-- End Google Tag Manager -->
 
-    
+
 
 </head>
 
@@ -74,8 +74,16 @@
                 <h1 class="fv__name">MOE MIYAKE</h1>
                 <!-- <img src="img/mv.png" alt="MOE MIYAKE"> -->
             </div>
-            <img class="fv__house" src="img/fv__house.png"
-                alt="家のイラストと冒頭挨拶「ご覧くださりありがとうございます。「人の手で作る温かさ」を大切にしながら、丁寧に制作します。」">
+            <!-- <img class="fv__house" src="img/fv__house.png"
+                alt="家のイラストと冒頭挨拶「ご覧くださりありがとうございます。「人の手で作る温かさ」を大切にしながら、丁寧に制作します。」"> -->
+            <picture class="fv__house">
+                <!-- スマホ・タブレット用（画面幅768px以下の場合） -->
+                <source media="(max-width: 1024px)" srcset="img/fv__house--sp.svg" type="image/svg+xml">
+                <!-- PC用（デフォルト・上記以外） -->
+                <img src="img/fv__house--pc.svg" alt="家のイラストと冒頭挨拶「ご覧くださりありがとうございます。「人の手で作る温かさ」を大切にしながら、丁寧に制作します。」"
+                    loading="lazy">
+            </picture>
+
         </div>
     </section>
 
@@ -83,18 +91,6 @@
     <section class="works">
 
         <h2>Works</h2>
-        <!-- <div class="works__list">
-            <div class="work_item">
-                <img src="img/work1.png" alt="Work 1">
-            </div>
-            <div class="work_item">
-                <img src="img/work2.png" alt="Work 2">
-            </div>
-            <div class="work_item">
-                <img src="img/work3.png" alt="Work 3">
-            </div>
-        </div> -->
-
         <!-- ☆Wordpressと連動して、最新情報を表示させたい。 -->
         <!-- Swiper -->
         <div class="swiper mySwiper">
@@ -116,7 +112,7 @@
                 <div class="swiper-slide">
                     <img src="img/works/works__site_himitunoyuuenti.jpg" />
                     <div class="works__content">
-                        <h3 class="works__title">ひみつの遊園地 Webサイト</h3>
+                        <h3 class="works__title">ひみつの遊園地 HP</h3>
                         <p class="works__category">Category</p>
                     </div>
                 </div>
@@ -169,10 +165,9 @@
 
 
         <div class="works__more">
-            <a class="button button--more" href="">
+            <a class="button button--more" href="もっと見る">
                 More
-                <!-- <img class="button__arrow" src="img/button__arrow.png" alt="もっと見る"> -->
-                <svg role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" ïwidth="57" height="6"
+                <svg class="button__arrow" role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" ïwidth="57" height="6"
                     viewBox="0 0 57 6" fill="none">
                     <path d="M0 4.45806H55.4606L52.2609 0.347198" stroke="#3C3C3C" stroke-width="1" />
                 </svg>
@@ -184,49 +179,51 @@
     <section class="about">
         <h2>About</h2>
         <div class="about__box">
-            <div class="about__head">
-                <div class="about__img">
-                    <img src="img/profile.png" alt="Profile Photo">
-                </div>
-                <div class="about__name">
-                    <p class="about__name--ja">三宅 萌（みやけ もえ）</p>
-                    <p class="about__name--en">Moe Miyake</p>
-                </div>
+            <div class="about__img">
+                <img src="img/about/about__moemiyake.jpg" alt="Profile Photo">
+            </div>
+            <div class="about__name">
+                <p class="about__name--ja">三宅 萌</p>
+                <p class="about__name--en">Moe Miyake</p>
             </div>
             <div class="about__text">
                 <p>
                     「コツコツやれば何でも作れる」という言葉をモットーに、丁寧かつスピーディに制作をします。<br>
-                    親しみやすさと、ユーザーの心を動かすデザイン制作を目指しています。<br>
-                    <br>
+                    親しみやすさと、ユーザーの心を動かすデザイン制作を目指しています。
+                </p>
+                <p>
                     特技は、小さな子供と仲良くなること。
                 </p>
             </div>
         </div>
-        <div class="about__more"></div>
-        <a class="button button--more" href="">
-            More
-            <!-- <img class="button__arrow" src="img/arrow.png" alt="もっと見る"> -->
-            <svg role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" ïwidth="57" height="6" viewBox="0 0 57 6"
-                fill="none">
-                <path d="M0 4.45806H55.4606L52.2609 0.347198" stroke="#3C3C3C" stroke-width="1" />
-            </svg>
-        </a>
+        <div class="about__more">
+            <a class="button button--more" href="">
+                More
+                <svg class="button__arrow" role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" ïwidth="57" height="6"
+                    viewBox="0 0 57 6" fill="none">
+                    <path d="M0 4.45806H55.4606L52.2609 0.347198" stroke="#3C3C3C" stroke-width="1" />
+                </svg>
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <!-- 植木鉢(ページ先頭に戻る) -->
-        <a class="footer__pagetop" href="#">
-            <img src="img/to_top.png" alt="ページ先頭に戻る">
-        </a>
-        <!-- ナビゲーション -->
-        <div class="footer__list">
-            <ul>
-                <li><a href="#">Top</a></li>
-                <li><a href="#">Works</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
+        <div class="footer__head">
+            <!-- 植木鉢(ページ先頭に戻る) -->
+            <a class="footer__pageTop" href="#">
+                <img class="footer__pageTop--plant" src="img/footer__pageTop--plant.svg" alt="ページ先頭に戻る">
+                <img class="footer__pageTop-arrow" src="img/footer__pageTop-arrow.svg" alt="ページ先頭に戻る">
+
+            </a>
+            <!-- ナビゲーション -->
+            <div class="footer__list">
+                <ul>
+                    <li><a href="#">Top</a></li>
+                    <li><a href="#">Works</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
         </div>
         <!-- コピーライト -->
         <small class="footer__copyright">© 2026 Moe Miyake</small>
