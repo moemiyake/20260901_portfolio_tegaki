@@ -1,9 +1,11 @@
+
 // Swiper 
 var swiper = new Swiper('.mySwiper', {
         effect: 'coverflow',
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: 1.5,
+        loop: true,
         coverflowEffect: {
           rotate: 50,
           stretch: 0,
@@ -14,4 +16,12 @@ var swiper = new Swiper('.mySwiper', {
         pagination: {
           el: '.swiper-pagination',
         },
+      });
+
+
+
+      // header__humbergerを押すと、.is-openがつく。toggleタイプ。バニラJS
+      const header = document.querySelector('header');
+      header.addEventListener('click', () => {
+        header.classList.toggle('is-open');
       });

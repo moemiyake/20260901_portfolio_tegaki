@@ -38,7 +38,9 @@ img {
     --color-text: #3c3c3c;
     --color-gray: #F8F8F8;
     --color-moegi: #AACF53;
-    --color-skyblue: #559FB7;
+    --color-blue: 85, 159, 183;
+    --color-skyblue: 132, 181, 197;
+    /* RGB値 */
     --color-white: #fff;
 }
 
@@ -47,41 +49,291 @@ img {
 /* ハンバーガーボタン (open) */
 .header__humberger {
     position: fixed;
-    width: 100%;
-    height: 70px;
-    padding: 0 10% 0 85%;
     z-index: 10;
-    transition: all 0.3s ease-in-out;
-}
+    cursor: pointer;
 
-.header__humberger--sp span {
-    position: relative;
-    display: block;
     width: 30px;
-    height: 1px;
-    background-color: var(--color-text);
-    margin: 12px auto;
+    height: 30px;
+
+    top: 20px;
+    right: 20px;
 }
 
-/* .header__list--sp {
-        カーテンを作る
-    } */
 
-.header__list {
-    display: none;
+header span {
+    &::before {
+        width: 100%;
+        height: 1px;
+        content: '';
+        background-color: var(--color-text);
+        position: absolute;
+        top: 7px;
+        transition: all 0.6s ease-in-out;
+    }
+
+    &::after {
+        width: 100%;
+        height: 1px;
+        content: '';
+        background-color: var(--color-text);
+        position: absolute;
+        bottom: 7px;
+        transition: all 0.7s ease-in-out;
+    }
+}
+
+
+
+/* ボタンを押したらバツになる */
+header.is-open span {
+    &::before {
+        transform: translateY(7px) rotate(135deg);
+        background-color: var(--color-white);
+    }
+
+    &::after {
+        transform: translateY(-7px) rotate(225deg);
+        background-color: var(--color-white);
+    }
 }
 
 
 /* ハンバーガーボタン (close) */
-.header__humberger.is-open span:nth-child(1) {
+header.is-open span:nth-child(1) {
     transform: rotate(-45deg);
     top: 6px;
 }
 
-.header__humberger.is-open span:nth-child(2) {
+header.is-open span:nth-child(2) {
     transform: rotate(45deg);
     bottom: 6px;
 }
+
+
+/* ハンバーガーメニュー */
+.header__list--pc {
+    display: none;
+}
+
+/* カーテン */
+.header__list--sp {
+    position: fixed;
+    top: -5vh;
+    right: -10px;
+    width: 80%;
+    height: 110vh;
+    background-color: rgba(var(--color-skyblue), 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 7;
+    transform: translateX(110%);
+    transition: transform 0.6s ease-in-out;
+}
+
+.header__list--sp::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 128px;
+    height: 110vh;
+    background-color: rgba(var(--color-blue), 0.3);
+    backdrop-filter: blur(5px);
+    filter: blur(1.5px);
+    z-index: -1;
+}
+
+header.is-open .header__list--sp {
+    transform: translateX(0);
+}
+
+/* カーテン アニメーション START */
+header.is-open .header__list--sp {
+    animation:
+        header__list1--keyframes1 3.5s linear,
+        header__list1--keyframes2 3.5s linear;
+}
+
+header.is-open .header__list--sp::after {
+    animation:
+        header__list2--keyframes1 3.5s linear,
+        header__list2--keyframes2 3.5s linear,
+        header__list2--keyframes3 3.5s linear;
+}
+
+
+/* アニメーションのキーフレーム */
+@keyframes header__list1--keyframes1 {
+    0% {
+        animation-timing-function: ease-out;
+        opacity: 0;
+    }
+
+    5.714% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes header__list1--keyframes2 {
+    0% {
+        animation-timing-function: cubic-bezier(0.22, 0.68, 0.36, 1);
+        transform: translate(340px, -12px);
+    }
+
+    27.143% {
+        animation-timing-function: cubic-bezier(0.34, 0.8, 0.64, 1);
+        transform: translate(-10px, 5px);
+    }
+
+    44.286% {
+        animation-timing-function: ease;
+        transform: translate(6px, 2px);
+    }
+
+    60% {
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translate(-2px, -0.8px);
+    }
+
+    75.714% {
+        transform: translate(0px, 0px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+
+/* 追加のアニメーション */
+@keyframes header__list2--keyframes1 {
+    0% {
+        animation-timing-function: ease-out;
+        opacity: 0;
+    }
+
+    8.571% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes header__list2--keyframes2 {
+    0% {
+        width: 128px;
+    }
+
+    4% {
+        animation-timing-function: cubic-bezier(0.22, 0.68, 0.36, 1);
+        width: 128px;
+    }
+
+    17.143% {
+        animation-timing-function: ease;
+        width: 120px;
+    }
+
+    32.857% {
+        animation-timing-function: cubic-bezier(0.34, 0.8, 0.64, 1);
+        width: 136px;
+    }
+
+    52.857% {
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        width: 124px;
+    }
+
+    74.286% {
+        width: 128px;
+    }
+
+    100% {
+        width: 128px;
+    }
+}
+
+@keyframes header__list2--keyframes3 {
+    0% {
+        translate: 320px -8px;
+    }
+
+    4% {
+        animation-timing-function: cubic-bezier(0.22, 0.68, 0.36, 1);
+        translate: 320px -8px;
+    }
+
+    30% {
+        animation-timing-function: cubic-bezier(0.34, 0.8, 0.64, 1);
+        translate: -8px 4px;
+    }
+
+    47.143% {
+        animation-timing-function: ease;
+        translate: 5px 1.5px;
+    }
+
+    62.857% {
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        translate: -1.5px -0.5px;
+    }
+
+    78.571% {
+        translate: 0px 0px;
+    }
+
+    100% {
+        translate: 0px 0px;
+    }
+}
+
+/* カーテン アニメーション END */
+
+
+.header__list--sp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+}
+
+.header__list--sp ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    gap: 1.5rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 200;
+    letter-spacing: 3px;
+    
+    li {
+        color: var(--color-white);
+    }
+}
+
+.header__name {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-family: "Lato", sans-serif;
+    font-weight: 200;
+    color: var(--color-white);
+}
+
+
+
+
 
 
 /* FV */
