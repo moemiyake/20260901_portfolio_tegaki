@@ -36,6 +36,7 @@ img {
 
 :root {
     --color-text: #3c3c3c;
+    --color-text-g: #B3B3B3;
     --color-gray: #F8F8F8;
     --color-moegi: #AACF53;
     --color-blue: 85, 159, 183;
@@ -314,7 +315,7 @@ header.is-open .header__list--sp::after {
     font-family: "Lato", sans-serif;
     font-weight: 200;
     letter-spacing: 3px;
-    
+
     li {
         color: var(--color-white);
     }
@@ -331,8 +332,38 @@ header.is-open .header__list--sp::after {
     color: var(--color-white);
 }
 
+/* TB */
+@media screen and (min-width: 768px) {}
 
+/* PC */
+@media screen and (min-width: 1024px) {
 
+    .header__list--sp,
+    .header__humberger--sp {
+        display: none;
+    }
+
+    .header__list--pc {
+        /* display: block; */
+        display: flex;
+
+        ul {
+            position: fixed;
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            padding-right: 5vw;
+            padding-top: 1.5rem;
+            font-size: 1.5rem;
+            gap: 2rem;
+            font-family: "Lato", sans-serif;
+            font-weight: 200;
+            letter-spacing: 3px;
+        }
+    }
+}
 
 
 
@@ -403,7 +434,8 @@ header.is-open .header__list--sp::after {
     }
 
     .fv__name {
-        padding: 3vh;
+        padding: 5vh;
+        padding-top: 80px;
     }
 
 
@@ -428,7 +460,7 @@ h2 {
     width: 100%;
 }
 
-.works {
+.top__works {
     display: flex;
     padding: 70px 0;
     flex-direction: column;
@@ -437,7 +469,7 @@ h2 {
     align-self: stretch;
 }
 
-.works__list {
+.top__works__list {
     display: flex;
     padding: 20px 0;
     flex-direction: column;
@@ -447,7 +479,7 @@ h2 {
 }
 
 /* 共通設定に移動？ */
-.works__more,
+.top__works__more,
 .about__more {
     display: flex;
     padding: 0 30px;
@@ -511,13 +543,13 @@ body {
 }
 
 /* 書き足し */
-.works__swiper {
+.top__works__swiper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.works__content {
+.top__works__content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -525,13 +557,13 @@ body {
     padding: 8px 0;
 }
 
-.works__title {
+.top__works__title {
     /* font-family: "Lato", sans-serif; */
     font-size: 18px;
     letter-spacing: 3px;
 }
 
-.works__category {
+.top__works__category {
     color: #B3B3B3;
     font-family: "Lato", sans-serif;
     font-size: 12px;
@@ -554,7 +586,7 @@ body {
         padding: 0 60px;
     }
 
-    .works__more {
+    .top__works__more {
         padding: 0 60px;
     }
 }
@@ -761,4 +793,118 @@ body {
     font-size: 12px;
     letter-spacing: 1.5px;
     margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+/* Works START */
+.works {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-white);
+}
+
+.works h2 {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: "Lato", sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: 1px;
+
+    padding: 0;
+    transform: rotate(90deg) translateY(-1em);
+    transform-origin: top left;
+}
+
+.works section {
+    padding: 50px 35px;
+    padding-top: 20vh;
+    margin: 0 auto;
+    max-width: 600px;
+    /* 不要なら削除 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+}
+
+.works__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.works__container img {
+    width: 100%;
+}
+
+.works__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.works__title {
+    color: var(--color-text);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 3px;
+}
+
+.works__category {
+    color: var(--color-text-g);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 1px;
+}
+
+/* ★メニューのスクロール設定が(未) */
+.works__headerCategory {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+
+    overflow: scroll;
+
+    ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+
+        li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 10px;
+
+            border-radius: 30px;
+            border: 1px solid #777;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(1.5px);
+
+            color: var(--color-text);
+            font-family: Lato;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+    }
 }
