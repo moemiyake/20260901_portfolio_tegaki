@@ -25,3 +25,8 @@ var swiper = new Swiper('.mySwiper', {
       header.addEventListener('click', () => {
         header.classList.toggle('is-open');
       });
+
+  var swiper2 = new Swiper('.mySwiper2', {
+    effect: 'cards',
+  grabCursor: true,
+      });

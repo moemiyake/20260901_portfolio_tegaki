@@ -27,7 +27,7 @@
     <!-- End Google Tag Manager -->
 </head>
 
-<body>
+<body class="about" id="about">
     <!-- Google Tag Manager (noscript) -->
     <noscript>
         <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PR5NB2P3" height="0" width="0"
@@ -35,7 +35,107 @@
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- コンテンツ -->
+    <header>
+        <!-- SP -->
+        <!-- ハンバーガー -->
+        <button class="header__humberger header__humberger--sp" type="button">
+            <span></span>
+            <!-- <span></span> -->
+        </button>
+        <!-- カード -->
+        <nav class="header__list header__list--sp">
+            <ul>
+                <li><a href="index.html">Top</a></li>
+                <li><a href="works.html">Works</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <h1 class="header__name">MOE MIYAKE</h1>
+        </nav>
+
+        <!-- PC -->
+        <nav class="header__list header__list--pc">
+            <ul>
+                <li><a href="index.html">Top</a></li>
+                <li><a href="works.html">Works</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <div class="about__fix">
+        <!-- 縦書きタイトル -->
+        <h2><a href="#">About</a></h2>
+    </div>
+
+    <section class="about__me">
+        <div class="about__title">
+            <h3>わたしのこと</h3>
+            <p>About me</p>
+        </div>
+        <div class="about__img">
+            <img src="img/about/about__moemiyake.jpg" alt="三宅萌の写真">
+        </div>
+        <div class="about__box">
+            <div class="about__name">
+                <p class="about__name--ja">三宅 萌</p>
+                <p class="about__name--en">Moe Miyake</p>
+            </div>
+            <div class="about__text">
+                <p>1994年生まれ。幼少期からものづくりが好きで、曲を作ったり、建築模型を作ったり、ハンドメイドのあみぐるみなどを作るのが趣味です。</p>
+
+                <p>
+                    Webサイトをタップすると画面が動く仕組みを知りたいと思い、職業訓練校で6ヶ月間Webデザインやフロントエンドコーディングについて学びました。<br>
+                    その後、都内の広告代理店にWEBデザイナーとして1年勤め、大手飲料メーカーの商品広告バナーをはじめ、300枚以上の画像を制作しました。社内パートMVPを受賞。
+                </p>
+
+                <p>「コツコツやれば何でも作れる」という言葉をモットーに、丁寧に制作をします。親しみやすさと、ユーザーが使いやすい「心地いいデザイン」の制作を目指しています。</p>
+
+                <p>特技は、料理と小さな子供と仲良くなること。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="skill">
+        <div class="about__title">
+            <h3>できること</h3>
+            <p>I can do</p>
+        </div>
+        <!-- Swiper -->
+        
+        <div class="swiper2 mySwiper2">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide skill__card">
+                    <img src="img/about/skill1_banner(仮).png" alt="バナー製作" class="skill__img">
+                    <span class="skill__line"></span>
+                    <div class="skill__text">
+                        <h4>バナー製作</h4>
+                        <p>
+                            訴求やペルソナに応じたバナーを制作します。サイズ展開やバリエーション展開も可能です。キャッチコピーも作れます。<br>(Figma,Canva,Photoshop)
+                        </p>
+                    </div>
+                </div>
+                <!-- slide 2 -->
+                <div class="swiper-slide skill__card">Slide 2</div>
+
+                <div class="swiper-slide skill__card">Slide 3</div>
+                <div class="swiper-slide skill__card">Slide 4</div>
+                <div class="swiper-slide skill__card">Slide 5</div>
+                <div class="swiper-slide skill__card">Slide 6</div>
+                <div class="swiper-slide skill__card">Slide 7</div>
+                <div class="swiper-slide skill__card">Slide 8</div>
+                <div class="swiper-slide skill__card">Slide 9</div>
+            </div>
+        </div>
+        <div class="about__skill--box">
+            
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
