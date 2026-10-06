@@ -1136,14 +1136,14 @@ section.project {
 }
 
 /* 各ブロック＆区切り線 */
-.project__section {
+.project__container {
     padding-top: 24px;
     padding-bottom: 28px;
     border-top: 1px solid #e5e5e5;
     width: 100%;
 }
 
-.project__section:last-child {
+.project__container:last-child {
     border-bottom: 1px solid #e5e5e5;
 }
 
