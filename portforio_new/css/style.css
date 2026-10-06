@@ -807,7 +807,8 @@ body {
 }
 
 .works h2,
-.about h2 {
+.about h2,
+.worksItem h2 {
     position: fixed;
     top: 20px;
     left: 20px;
@@ -972,96 +973,9 @@ body {
     background-color: var(--color-white);
 }
 
-/* html,
-  body {
-      position: relative;
-      height: 100%;
-  }
-
-  body {
-      background: #000;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-  }
-
-  body {
-      background: #fff;
-      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      color: #000;
-      margin: 0;
-      padding: 0;
-  }
-
-  html,
-  body {
-      position: relative;
-      height: 100%;
-  }
-
-  body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  } */
-
 .swiper2 {
     width: 80vw;
     height: fit-content;
-
-    /* .swiper-slide {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-radius: 18px;
-        font-size: 22px;
-        font-weight: bold;
-        color: #fff;
-    } */
-    /* 
-    .swiper-slide:nth-child(1n) {
-        background-color: rgb(206, 17, 17);
-    }
-
-    .swiper-slide:nth-child(2n) {
-        background-color: rgb(0, 140, 255);
-    }
-
-    .swiper-slide:nth-child(3n) {
-        background-color: rgb(10, 184, 111);
-    }
-
-    .swiper-slide:nth-child(4n) {
-        background-color: rgb(211, 122, 7);
-    }
-
-    .swiper-slide:nth-child(5n) {
-        background-color: rgb(118, 163, 12);
-    }
-
-    .swiper-slide:nth-child(6n) {
-        background-color: rgb(180, 10, 47);
-    }
-
-    .swiper-slide:nth-child(7n) {
-        background-color: rgb(35, 99, 19);
-    }
-
-    .swiper-slide:nth-child(8n) {
-        background-color: rgb(0, 68, 255);
-    }
-
-    .swiper-slide:nth-child(9n) {
-        background-color: rgb(218, 12, 218);
-    }
-
-    .swiper-slide:nth-child(10n) {
-        background-color: rgb(54, 94, 77);
-    } */
 }
 
 .skill {
@@ -1111,63 +1025,96 @@ body {
 /* About END */
 
 
-/* Works-detail(各制作物) START */
+/* WorksItem(各制作物) START */
 
-/* body {
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    color: #555555;
-    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-    font-size: 14px;
-    line-height: 1.8;
-    letter-spacing: 0.05em;
-    -webkit-font-smoothing: antialiased;
-} */
+.worksItem {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
 
 /* ==========================================================================
    Project Block (.project)
    ========================================================================== */
-section.project {
+/* section.project {
     max-width: 480px;
     margin: 0 auto;
     padding: 40px 20px;
     gap: 0;
+} */
+
+
+/* worksFv */
+.worksItem__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* 各ブロック＆区切り線 */
+
+
+.worksFv__img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background-color: var(--color-gray);
+}
+
+/* PC FV固定の仕組み */
+@media screen and (min-width: 768px) {
+    .worksItem__container {
+        flex-direction: row;
+        position: relative;
+    }
+
+        .worksItem__fixLeft {
+            width: 50%;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+        }
+
+        .worksItem__fixRight {
+            width: 50%;
+            height: 100vh;
+            right: 0;
+        }
+        /* ??? */
+}
+
+
+
+/* Ploject(詳細情報) */
+/* -- 区切り線 */
 .project__container {
-    padding-top: 24px;
-    padding-bottom: 28px;
-    border-top: 1px solid #e5e5e5;
+    padding: 24px 0;
+    border-bottom: 1px solid #e5e5e5;
     width: 100%;
 }
 
 .project__container:last-child {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: none;
 }
 
 /* 見出し (h3) */
-.project__heading {
+/* .project__heading {
     margin: 0 0 16px 0;
     color: rgb(var(--color-blue));
-    /* font-size: 12px; */
-    /* font-weight: bold; */
     letter-spacing: 1.5;
-}
+} */
 
 /* 本文テキスト */
-.project__text {
+/* .project__text {
     margin: 0;
-    /* font-size: 12px; */
-    /* font-style: normal; */
-    /* font-weight: 400; */
     line-height: 22px;
     letter-spacing: 1px;
-}
+} */
 
 /* 制作期間のリスト構造 (dl / dt / dd) */
-.project__meta-list {
+/* .project__meta-list {
     margin: 0;
     padding: 0;
 }
@@ -1189,6 +1136,6 @@ section.project {
 
 .project__meta-desc {
     text-align: right;
-}
+} */
 
 /* Works-detail END */
