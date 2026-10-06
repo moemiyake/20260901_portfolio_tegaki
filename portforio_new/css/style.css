@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Noto Sans JP', sans-serif;
     color: #3c3c3c;
+    font-size: 14px;
 }
 
 html {
@@ -37,6 +38,7 @@ img {
 :root {
     --color-text: #3c3c3c;
     --color-text-g: #B3B3B3;
+    --color-text-b: #84B5C5;
     --color-gray: #F8F8F8;
     --color-moegi: #AACF53;
     --color-blue: 85, 159, 183;
@@ -820,6 +822,10 @@ body {
     padding: 0;
     transform: rotate(90deg) translateY(-1em);
     transform-origin: top left;
+
+    a {
+        font-size: 32px;
+    }
 }
 
 /* Works About 共通 END */
@@ -851,6 +857,7 @@ body {
 
 .works__headerCategory {
     position: fixed;
+    z-index: 10;
     bottom: 5px;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -937,7 +944,6 @@ body {
     a {
         font-family: "Lato", sans-serif;
     }
-
 
     .works__pagination--number {
         display: flex;
@@ -1033,78 +1039,196 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px;
 }
 
-/* ==========================================================================
-   Project Block (.project)
-   ========================================================================== */
-/* section.project {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    gap: 0;
-} */
-
-
-/* worksFv */
 .worksItem__container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 90%;
+    gap: 50px;
 }
 
+.worksItem__fixRight {
+    width: 100%;
+}
 
+.worksItem__fixLeft {
+    padding-top: 130px;
+}
 
+/* worksFv */
 .worksFv__img {
     width: 100%;
     height: auto;
     object-fit: contain;
     background-color: var(--color-gray);
+    margin-top: 5%;
 }
 
-/* PC FV固定の仕組み */
-@media screen and (min-width: 768px) {
-    .worksItem__container {
-        flex-direction: row;
-        position: relative;
+.worksFv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+/* 右側 */
+.worksItem__fixRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 50px;
+
+    h3 {
+        margin-top: 0px;
+    }
+}
+
+
+/* タイトル */
+.worksFv__title {
+    color: var(--color-text);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 2.8px;
+}
+
+/* カテゴリ */
+.worksFv__category {
+    ul {
+        display: flex;
+        gap: 10px;
     }
 
-        .worksItem__fixLeft {
-            width: 50%;
-            height: 100vh;
-            position: fixed;
-            left: 0;
-        }
+    li {
+        color: var(--color-text-b);
+        font-family: "Lato", sans-serif;
+    }
 
-        .worksItem__fixRight {
-            width: 50%;
-            height: 100vh;
-            right: 0;
-        }
-        /* ??? */
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
 }
 
+/* テキスト */
+.worksFv__text {
+    margin-top: 1em;
+    font-size: 14px;
+        line-height: 23px;
+        letter-spacing: 1.5px;
+        font-weight: normal;
+}
 
 
 /* Ploject(詳細情報) */
+.project {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 /* -- 区切り線 */
 .project__container {
-    padding: 24px 0;
+    padding: 24px 10px;
     border-bottom: 1px solid #e5e5e5;
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .project__container:last-child {
     border-bottom: none;
 }
 
-/* 見出し (h3) */
-/* .project__heading {
-    margin: 0 0 16px 0;
-    color: rgb(var(--color-blue));
-    letter-spacing: 1.5;
-} */
+
+/* -- 見出し */
+.project__title {
+    color: var(--color-text-b);
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 1.5px;
+}
+
+/* -- 本文テキスト */
+.project__text {
+    width: 100%;
+    font-size: 14px;
+    line-height: 23px;
+    letter-spacing: 1.5px;
+    font-weight: normal;
+
+    a {
+        width: 100%;
+    }
+}
+
+.project__text dl {
+    display: flex;
+    justify-content: space-between;
+
+    dt {
+        font-weight: normal;
+    }
+}
+
+/* 外部ページリンク　アイコン */
+.project__text a::after {
+    /* icon__openLink.svgを配置する */
+    content: url(../img/icon__openLink.svg);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+
+/* PC FV固定の仕組み */
+@media screen and (min-width: 768px) {
+    .worksItem__container {
+        flex-direction: row;
+    }
+
+    .worksItem__fixLeft {
+        flex: 1;
+        position: sticky;
+        height: 100vh;
+        width: auto;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+
+        img {
+            width: auto;
+            height: 95vh;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+    }
+
+    .worksItem__fixRight {
+        flex: 1;
+        height: 100vh;
+        overflow-y: scroll;
+        width: 100%;
+
+        h3 {
+            margin-top: 50px;
+        }
+    }
+
+
+    .worksItem__content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
 
 /* 本文テキスト */
 /* .project__text {
