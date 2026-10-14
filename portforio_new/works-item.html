@@ -195,10 +195,140 @@
         </div>
     </div>
 
-    <section class="window">
-        <!-- ここに窓(.exhibition)を入れる -->
+    <!-- Exhibition (制作実績スライダー) -->
+    <section class="exhibition" aria-labelledby="exhibition-title">
+        <div class="exhibition__header">
+            <h3 class="exhibition__title" id="exhibition-title">Works</h3>
+        </div>
+    
+        <!-- Swiper START -->
+        <section class="exhibition__showcase swiper mySwiper3" aria-label="制作実績" tabindex="0">
+            <div class="exhibition__track swiper-wrapper">
+    
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=vessi">
+                        <img class="exhibition__cardImage" src="img/exhibition/vessi.png" alt="VessiのWebサイトデザイン">
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">Vessi</h4>
+                            <p class="exhibition__cardCategory">design / coding</p>
+                        </div>
+                    </a>
+                </article>
+    
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=himitsu-hp">
+                        <img class="exhibition__cardImage" src="img/exhibition/himitsu-hp.png" alt="ひみつの遊園地のWebサイトデザイン">
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">ひみつの遊園地 HP</h4>
+                            <p class="exhibition__cardCategory">design / coding</p>
+                        </div>
+                    </a>
+                </article>
+    
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=portfolio">
+                        <img class="exhibition__cardImage exhibition__cardImage--bordered"
+                            src="img/exhibition/portfolio.png" alt="ポートフォリオサイトのデザイン">
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">ポートフォリオ</h4>
+                            <p class="exhibition__cardCategory">design / coding</p>
+                        </div>
+                    </a>
+                </article>
+    
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=shikinomori-autumn">
+                        <img class="exhibition__cardImage" src="img/exhibition/shikinomori-autumn.png"
+                            alt="四季の森公園 秋のバナーデザイン">
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">四季の森公園 秋</h4>
+                            <p class="exhibition__cardCategory">Banner design</p>
+                        </div>
+                    </a>
+                </article>
+    
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=shikinomori-festival">
+                        <img class="exhibition__cardImage" src="img/exhibition/shikinomori-festival.png"
+                            alt="四季の森公園 秋祭りのバナーデザイン">
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">四季の森公園 秋祭り</h4>
+                            <p class="exhibition__cardCategory">Banner design</p>
+                        </div>
+                    </a>
+                </article>
+    
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=snow-cream">
+                        <img class="exhibition__cardImage" src="img/exhibition/snow-cream.png" alt="SNOW CREAM 新作のバナーデザイン">
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">SNOW CREAM 新作</h4>
+                            <p class="exhibition__cardCategory">Banner design</p>
+                        </div>
+                    </a>
+                </article>
+    
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=toricolate">
+                        <img class="exhibition__cardImage" src="img/exhibition/toricolate.png" alt="Toricolateのデザイン">
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">Toricolate</h4>
+                            <p class="exhibition__cardCategory">design</p>
+                        </div>
+                    </a>
+                </article>
+    
+                <!-- ロゴ(画像の一部をトリミングして表示) -->
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=himitsu-logo">
+                        <div class="exhibition__cardCrop exhibition__cardCrop--logo">
+                            <img src="img/exhibition/himitsu-logo.png" alt="ひみつの遊園地のロゴデザイン">
+                        </div>
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">ひみつの遊園地 ロゴ</h4>
+                            <p class="exhibition__cardCategory">Logo design</p>
+                        </div>
+                    </a>
+                </article>
+    
+                <!-- アイコン(画像の一部をトリミングして表示) -->
+                <article class="exhibition__card swiper-slide">
+                    <a class="exhibition__cardLink" href="works-item.html?id=simple-icons">
+                        <div class="exhibition__cardCrop exhibition__cardCrop--icons">
+                            <img src="img/exhibition/simple-icons.png" alt="Simple Iconsのアイコンデザイン">
+                        </div>
+                        <div class="exhibition__cardContent">
+                            <h4 class="exhibition__cardTitle">Simple Icons</h4>
+                            <p class="exhibition__cardCategory">Icon design</p>
+                        </div>
+                    </a>
+                </article>
+    
+            </div>
+    
+            <!-- 枠(CSSで作成。幅が変わっても台形が崩れない) -->
+            <div class="exhibition__frame" aria-hidden="true">
+                <span class="exhibition__frameTop"></span>
+                <span class="exhibition__frameBottom"></span>
+                <span class="exhibition__frameLeft"></span>
+                <span class="exhibition__frameRight"></span>
+            </div>
+            <!-- 植木鉢 -->
+            <img class="exhibition__plant" src="img/exhibition__plant.svg" alt="" aria-hidden="true">
+        </section>
+        <!-- Swiper END -->
+    
+        <!-- More (トップページと同じボタンを使用) -->
+        <div class="exhibition__more">
+            <a class="button button--more" href="works.html" aria-label="制作実績をもっと見る">
+                More
+                <svg class="button__arrow" role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" width="57"
+                    height="6" viewBox="0 0 57 6" fill="none">
+                    <path d="M0 4.45806H55.4606L52.2609 0.347198" stroke="#3C3C3C" stroke-width="1" />
+                </svg>
+            </a>
+        </div>
     </section>
-
 
     <!-- Footer -->
     <footer class="footer">
