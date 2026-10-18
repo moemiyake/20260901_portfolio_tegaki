@@ -482,7 +482,7 @@ h2 {
 
 /* 共通設定に移動？ */
 .top__works__more,
-.about__more {
+.top__about__more {
     display: flex;
     padding: 0 30px;
     justify-content: flex-end;
@@ -600,7 +600,7 @@ body {
 
 
 /* About */
-.about {
+.top__about {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -693,7 +693,7 @@ body {
 
 /* タブレット向け */
 @media screen and (min-width: 768px) {
-    .about {
+    .top__about {
         padding: 50px 30px;
     }
 
@@ -706,7 +706,7 @@ body {
 
 /* PC向け */
 @media screen and (min-width: 1024px) {
-    .about {
+    .top__about {
         padding: 80px 60px;
     }
 
