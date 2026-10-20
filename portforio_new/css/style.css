@@ -5,6 +5,8 @@
     font-family: 'Noto Sans JP', sans-serif;
     color: #3c3c3c;
     font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 1.5;
 }
 
 html {
@@ -114,6 +116,10 @@ header.is-open span:nth-child(2) {
 
 
 /* ハンバーガーメニュー */
+.header__list ul li a {
+    font-size: 30px;
+}
+
 .header__list--pc {
     display: none;
 }
@@ -674,7 +680,7 @@ body {
     padding: 100px 35px;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    gap: 1.5em;
     text-align: center;
 
     ul {
@@ -1007,7 +1013,7 @@ body {
 
 .skill {
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: var(--color-gray);
     display: flex;
     flex-direction: column;
@@ -1018,21 +1024,93 @@ body {
 .skill__card {
     background-color: #fff;
     border-radius: 50px;
-    border: 1px solid var(--color-text-g);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     height: 100%;
+    display: flex;
+
+    padding: 30px 25px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    align-self: stretch;
+}
+
+.skill__img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.skill__card img {
+    aspect-ratio: 1/1;
+}
+
+.skill__line {
+    width: 100%;
+    border-bottom: 5px dotted var(--color-moegi);
+}
+
+.skill__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    align-self: stretch;
+
+    h4 {
+        color: var(--color-moegi);
+        text-align: center;
+        /* font-family: "Albert Sans"; */
+        font-size: 20px;
+        /* font-style: normal; */
+        font-weight: 500;
+        line-height: 27px;
+        /* 135% */
+        letter-spacing: 1.8px;
+    }
+
+    p {
+        /* color: var(--, #3C3C3C); */
+        text-align: center;
+        /* font-family: "Zen Kaku Gothic New"; */
+        font-size: 14px;
+        /* font-style: normal; */
+        font-weight: 400;
+        line-height: 25px;
+        /* 178.571% */
+        letter-spacing: 1.5px;
+    }
+}
+
+.about section {
+    padding: 50px 0;
+    /* height: auto; */
+}
+
+.about__me {
+    width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
 }
 
 .about__title {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    margin: 30px auto 20px;
 
     h3 {
         color: var(--color-text);
@@ -1044,8 +1122,9 @@ body {
     p {
         color: var(--color-moegi);
         font-size: 14px;
-        font-weight: 700;
+        font-weight: 500;
         letter-spacing: 3.9px;
+        margin-top: 0.5em;
     }
 }
 
@@ -1363,7 +1442,7 @@ body {
     outline-offset: 5px;
 }
 
-.exhibition__cardImage,
+.exhibition__card.exhibition__cardImage,
 .exhibition__cardCrop {
     width: 180px;
     height: 180px;
