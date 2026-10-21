@@ -1095,7 +1095,7 @@ body {
 /* カード本体。縁取りをもえぎ色にして、重なったときに後ろのカードも見分けられるようにする */
 .skill__card {
     background-color: var(--color-white);
-    border: 1px solid var(--color-moegi);
+    border: 1px solid var(--color-gray);
     border-radius: 36px;
     box-shadow: 0 10px 24px rgba(var(--color-blue), 0.18);
     width: 100%;
