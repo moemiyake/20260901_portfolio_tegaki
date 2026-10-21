@@ -566,6 +566,20 @@ body {
     padding: 8px 0;
 }
 
+.top__works .mySwiper .swiper-slide-shadow-left,
+.top__works .mySwiper .swiper-slide-shadow-right {
+    height: auto;
+    aspect-ratio: 4 / 5;
+}
+
+.top__works .mySwiper .swiper-slide-shadow-left {
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+}
+
+.top__works .mySwiper .swiper-slide-shadow-right {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+}
+
 .top__works__title {
     /* font-family: "Lato", sans-serif; */
     font-size: 18px;
@@ -591,6 +605,11 @@ body {
 
 /* タブレット用 */
 @media screen and (min-width: 768px) {
+
+    .top__works .mySwiper {
+        width: 100%;
+    }
+
     .works h2 {
         padding: 0 60px;
     }
@@ -601,7 +620,50 @@ body {
 }
 
 /* PC用 */
-@media screen and (min-width: 1025px) {}
+@media screen and (min-width: 1025px) {
+    .top__works .mySwiper {
+        max-width: none;
+    }
+
+    .top__works .mySwiper .top__works__image {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 60vh;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .top__works .mySwiper .top__works__image::before {
+        content: "";
+        position: absolute;
+        inset: -100px;
+        z-index: 0;
+        background-image: var(--works-slide-image);
+        background-position: center;
+        background-size: cover;
+        filter: blur(100px);
+        opacity: 0.6;
+    }
+
+    .top__works .mySwiper .top__works__image img {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        max-height: 60vh;
+        aspect-ratio: auto;
+        object-fit: contain;
+    }
+
+    .top__works .mySwiper .swiper-slide-shadow-left,
+    .top__works .mySwiper .swiper-slide-shadow-right {
+        height: 60vh;
+        aspect-ratio: auto;
+    }
+}
 
 
 

@@ -1,10 +1,35 @@
 // Swiper 
+document.querySelectorAll('.top__works .mySwiper .top__works__image').forEach((frame) => {
+  const image = frame.querySelector('img');
+  if (image) {
+    frame.style.setProperty('--works-slide-image', `url("${image.src}")`);
+  }
+});
+
 var swiper = new Swiper('.mySwiper', {
   effect: 'coverflow',
   grabCursor: true,
   centeredSlides: true,
   slidesPerView: 1.5,
   loop: true,
+  breakpoints: {
+    768: {
+      slidesPerView: 2.1,
+      spaceBetween: 50,
+      coverflowEffect: {
+        rotate: 12,
+        depth: 80,
+      },
+    },
+    1024: {
+      slidesPerView: 2.1,
+      spaceBetween: 100,
+      coverflowEffect: {
+        rotate: 8,
+        depth: 80,
+      },
+    },
+  },
   coverflowEffect: {
     rotate: 50,
     stretch: 0,
