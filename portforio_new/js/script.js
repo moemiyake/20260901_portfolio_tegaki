@@ -1,4 +1,3 @@
-
 // Swiper 
 var swiper = new Swiper('.mySwiper', {
   effect: 'coverflow',
@@ -26,9 +25,20 @@ header.addEventListener('click', () => {
   header.classList.toggle('is-open');
 });
 
+// 「動きを減らす」設定の人にはアニメーションを止める
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 var swiper2 = new Swiper('.mySwiper2', {
   effect: 'cards',
   grabCursor: true,
+  speed: prefersReducedMotion ? 0 : 700, // めくる速さ(ms)。初期値300より少しゆっくり
+  cardsEffect: {
+    rotate: true,
+    perSlideOffset: 6, // 後ろのカードをずらす量(初期値8)
+    perSlideRotate: window.innerWidth >= 1024 ? 1.5 : 3, // 後ろのカードを傾ける角度(初期値2)。PCは横長なので控えめに
+    slideShadows: false, // 黒い影を消して、カードの縁取りで重なりを見せる
+  },
+  keyboard: { enabled: true }, // 矢印キーでもめくれる
 });
 
 
