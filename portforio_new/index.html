@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Moemiyake Portfolio | Top</title>
     <link rel="stylesheet" href="css/destyle.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -38,7 +38,7 @@
     <header>
         <!-- SP -->
         <!-- ハンバーガー -->
-        <button class="header__humberger header__humberger--sp" type="button">
+        <button class="header__hamburger header__hamburger--sp" type="button" aria-label="メニュー" aria-expanded="false">
             <span></span>
             <!-- <span></span> -->
         </button>
@@ -65,7 +65,7 @@
     <!-- FV -->
     <section class="fv">
         <div class="fv__box">
-            <div class="fv__name">
+            <div class="fv__nameBox">
                 <!-- SVGにする -->
                 <h1 class="fv__name" style="font-family: 'Noto Serif JP', serif;">MOE MIYAKE</h1>
             </div>
@@ -88,86 +88,105 @@
         <!-- Swiper -->
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
+                <!-- ☆WordPress連動: 各スライドの href・画像・タイトル・カテゴリを投稿データに差し替える(5枚目以降は仮のサンプル) -->
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="img/works/works__banner_autumn leaves festival.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">四季の森公園 秋祭り</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html?id=shikinomori-festival">
+                        <div class="top__works__image">
+                            <img src="img/works/works__banner_autumn leaves festival.jpg" alt="四季の森公園 秋祭りのバナー" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">四季の森公園 秋祭り</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="img/works/works__banner_park.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">四季の森公園 秋</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html?id=shikinomori-autumn">
+                        <div class="top__works__image">
+                            <img src="img/works/works__banner_park.jpg" alt="四季の森公園 秋のバナー" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">四季の森公園 秋</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="img/works/works__site_himitunoyuuenti.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">ひみつの遊園地 HP</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html?id=himitsu-hp">
+                        <div class="top__works__image">
+                            <img src="img/works/works__site_himitunoyuuenti.jpg" alt="ひみつの遊園地のホームページ" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">ひみつの遊園地 HP</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="img/works/works__site_Vessi.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">Vessi LP</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html?id=vessi">
+                        <div class="top__works__image">
+                            <img src="img/works/works__site_Vessi.jpg" alt="Vessiのランディングページ" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">Vessi LP</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="https://swiperjs.com/demos/images/abstract-5.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">Slide 5</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html">
+                        <div class="top__works__image">
+                            <img src="https://swiperjs.com/demos/images/abstract-5.jpg" alt="サンプル画像" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">Slide 5</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="https://swiperjs.com/demos/images/abstract-6.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">Slide 6</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html">
+                        <div class="top__works__image">
+                            <img src="https://swiperjs.com/demos/images/abstract-6.jpg" alt="サンプル画像" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">Slide 6</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="https://swiperjs.com/demos/images/abstract-7.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">Slide 7</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html">
+                        <div class="top__works__image">
+                            <img src="https://swiperjs.com/demos/images/abstract-7.jpg" alt="サンプル画像" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">Slide 7</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="https://swiperjs.com/demos/images/abstract-8.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">Slide 8</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html">
+                        <div class="top__works__image">
+                            <img src="https://swiperjs.com/demos/images/abstract-8.jpg" alt="サンプル画像" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">Slide 8</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
                 <div class="swiper-slide">
-                    <div class="top__works__image">
-                        <img src="https://swiperjs.com/demos/images/abstract-9.jpg" />
-                    </div>
-                    <div class="top__works__content">
-                        <h3 class="top__works__title">Slide 9</h3>
-                        <p class="top__works__category">Category</p>
-                    </div>
+                    <a class="top__works__link" href="works-item.html">
+                        <div class="top__works__image">
+                            <img src="https://swiperjs.com/demos/images/abstract-9.jpg" alt="サンプル画像" />
+                        </div>
+                        <div class="top__works__content">
+                            <h3 class="top__works__title">Slide 9</h3>
+                            <p class="top__works__category">Category</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -178,7 +197,7 @@
         <div class="top__works__more">
             <a class="button button--more" href="works.html">
                 More
-                <svg class="button__arrow" role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" ïwidth="57"
+                <svg class="button__arrow" role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" width="57"
                     height="6" viewBox="0 0 57 6" fill="none">
                     <path d="M0 4.45806H55.4606L52.2609 0.347198" stroke="#3C3C3C" stroke-width="1" />
                 </svg>
@@ -208,9 +227,9 @@
             </div>
         </div>
         <div class="top__about__more">
-            <a class="button button--more" href="">
+            <a class="button button--more" href="about.html">
                 More
-                <svg class="button__arrow" role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" ïwidth="57"
+                <svg class="button__arrow" role="img" aria-label="もっと見る" xmlns="http://www.w3.org/2000/svg" width="57"
                     height="6" viewBox="0 0 57 6" fill="none">
                     <path d="M0 4.45806H55.4606L52.2609 0.347198" stroke="#3C3C3C" stroke-width="1" />
                 </svg>
@@ -224,7 +243,7 @@
             <!-- 植木鉢(ページ先頭に戻る) -->
             <a class="footer__pageTop" href="#">
                 <img class="footer__pageTop--plant" src="img/footer__pageTop--plant.svg" alt="ページ先頭に戻る">
-                <img class="footer__pageTop-arrow" src="img/footer__pageTop-arrow.svg" alt="ページ先頭に戻る">
+                <img class="footer__pageTop-arrow" src="img/footer__pageTop-arrow.svg" alt="" aria-hidden="true">
 
             </a>
             <!-- ナビゲーション -->

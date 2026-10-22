@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Moemiyake Portfolio | ひみつの遊園地</title>
     <link rel="stylesheet" href="css/destyle.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -38,7 +38,7 @@
     <header>
         <!-- SP -->
         <!-- ハンバーガー -->
-        <button class="header__humberger header__humberger--sp" type="button">
+        <button class="header__hamburger header__hamburger--sp" type="button" aria-label="メニュー" aria-expanded="false">
             <span></span>
             <!-- <span></span> -->
         </button>
@@ -170,7 +170,7 @@
                                 <dd>1ヶ月</dd>
                             </dl>
                         </dd>
- 
+
                     </div>
 
                     <!-- 使用ツール -->
@@ -200,11 +200,11 @@
         <div class="exhibition__header">
             <h3 class="exhibition__title" id="exhibition-title">Works</h3>
         </div>
-    
+
         <!-- Swiper START -->
         <section class="exhibition__showcase swiper mySwiper3" aria-label="制作実績" tabindex="0">
             <div class="exhibition__track swiper-wrapper">
-    
+
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=vessi">
                         <img class="exhibition__cardImage" src="img/exhibition/vessi.png" alt="VessiのWebサイトデザイン">
@@ -214,7 +214,7 @@
                         </div>
                     </a>
                 </article>
-    
+
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=himitsu-hp">
                         <img class="exhibition__cardImage" src="img/exhibition/himitsu-hp.png" alt="ひみつの遊園地のWebサイトデザイン">
@@ -224,7 +224,7 @@
                         </div>
                     </a>
                 </article>
-    
+
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=portfolio">
                         <img class="exhibition__cardImage exhibition__cardImage--bordered"
@@ -235,7 +235,7 @@
                         </div>
                     </a>
                 </article>
-    
+
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=shikinomori-autumn">
                         <img class="exhibition__cardImage" src="img/exhibition/shikinomori-autumn.png"
@@ -246,7 +246,7 @@
                         </div>
                     </a>
                 </article>
-    
+
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=shikinomori-festival">
                         <img class="exhibition__cardImage" src="img/exhibition/shikinomori-festival.png"
@@ -257,17 +257,18 @@
                         </div>
                     </a>
                 </article>
-    
+
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=snow-cream">
-                        <img class="exhibition__cardImage" src="img/exhibition/snow-cream.png" alt="SNOW CREAM 新作のバナーデザイン">
+                        <img class="exhibition__cardImage" src="img/exhibition/snow-cream.png"
+                            alt="SNOW CREAM 新作のバナーデザイン">
                         <div class="exhibition__cardContent">
                             <h4 class="exhibition__cardTitle">SNOW CREAM 新作</h4>
                             <p class="exhibition__cardCategory">Banner design</p>
                         </div>
                     </a>
                 </article>
-    
+
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=toricolate">
                         <img class="exhibition__cardImage" src="img/exhibition/toricolate.png" alt="Toricolateのデザイン">
@@ -277,7 +278,7 @@
                         </div>
                     </a>
                 </article>
-    
+
                 <!-- ロゴ(画像の一部をトリミングして表示) -->
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=himitsu-logo">
@@ -290,7 +291,7 @@
                         </div>
                     </a>
                 </article>
-    
+
                 <!-- アイコン(画像の一部をトリミングして表示) -->
                 <article class="exhibition__card swiper-slide">
                     <a class="exhibition__cardLink" href="works-item.html?id=simple-icons">
@@ -303,9 +304,9 @@
                         </div>
                     </a>
                 </article>
-    
+
             </div>
-    
+
             <!-- 枠(CSSで作成。幅が変わっても台形が崩れない) -->
             <div class="exhibition__frame" aria-hidden="true">
                 <span class="exhibition__frameTop"></span>
@@ -317,7 +318,7 @@
             <img class="exhibition__plant" src="img/exhibition__plant.svg" alt="" aria-hidden="true">
         </section>
         <!-- Swiper END -->
-    
+
         <!-- More (トップページと同じボタンを使用) -->
         <div class="exhibition__more">
             <a class="button button--more" href="works.html" aria-label="制作実績をもっと見る">
@@ -336,7 +337,7 @@
             <!-- 植木鉢(ページ先頭に戻る) -->
             <a class="footer__pageTop" href="#">
                 <img class="footer__pageTop--plant" src="img/footer__pageTop--plant.svg" alt="ページ先頭に戻る">
-                <img class="footer__pageTop-arrow" src="img/footer__pageTop-arrow.svg" alt="ページ先頭に戻る">
+                <img class="footer__pageTop-arrow" src="img/footer__pageTop-arrow.svg" alt="" aria-hidden="true">
 
             </a>
             <!-- ナビゲーション -->

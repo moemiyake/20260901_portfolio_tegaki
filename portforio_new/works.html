@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Moemiyake Portfolio | Works</title>
     <link rel="stylesheet" href="css/destyle.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -38,7 +38,7 @@
     <header>
         <!-- SP -->
         <!-- ハンバーガー -->
-        <button class="header__humberger header__humberger--sp" type="button">
+        <button class="header__hamburger header__hamburger--sp" type="button" aria-label="メニュー" aria-expanded="false">
             <span></span>
             <!-- <span></span> -->
         </button>
@@ -83,7 +83,7 @@
 
     <section>
         <div class="works__container">
-            <img src="img/works/works__site_Vessi.jpg" alt="vessiのホームページ">
+            <a href="works-item.html?id=vessi"><img src="img/works/works__site_Vessi.jpg" alt="vessiのホームページ"></a>
             <div class="works__content">
                 <h3 class="works__title">
                     Vessi HP
@@ -94,21 +94,11 @@
             </div>
         </div>
         <div class="works__container">
-            <a href="works-item.html"><img src="img/works/works__site_himitunoyuuenti.jpg" alt="ひみつの遊園地のホームページ"></a>
+            <a href="works-item.html?id=himitsu-hp"><img src="img/works/works__site_himitunoyuuenti.jpg"
+                    alt="ひみつの遊園地のホームページ"></a>
             <div class="works__content">
                 <h3 class="works__title">
                     ひみつの遊園地 HP
-                </h3>
-                <p class="works__category">
-                    Category
-                </p>
-            </div>
-        </div>
-        <div class="works__container">
-            <img src="img/fv__background--sp.jpg" alt="ひみつの遊園地のホームページ">
-            <div class="works__content">
-                <h3 class="works__title">
-                    テスト
                 </h3>
                 <p class="works__category">
                     Category
@@ -119,13 +109,13 @@
     <nav>
         <!-- ☆ページネーション(1.2.3...)と矢印(next,back) WP仕様 -->
         <div class="works__pagination">
-                <a href="#">⇦</a>
-                <div class="works__pagination--number">
-                    <a href="#">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                </div>
-                <a href="#">⇨</a>
+            <a href="#">⇦</a>
+            <div class="works__pagination--number">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+            </div>
+            <a href="#">⇨</a>
         </div>
 
 
@@ -137,7 +127,7 @@
             <!-- 植木鉢(ページ先頭に戻る) -->
             <a class="footer__pageTop" href="#">
                 <img class="footer__pageTop--plant" src="img/footer__pageTop--plant.svg" alt="ページ先頭に戻る">
-                <img class="footer__pageTop-arrow" src="img/footer__pageTop-arrow.svg" alt="ページ先頭に戻る">
+                <img class="footer__pageTop-arrow" src="img/footer__pageTop-arrow.svg" alt="" aria-hidden="true">
 
             </a>
             <!-- ナビゲーション -->

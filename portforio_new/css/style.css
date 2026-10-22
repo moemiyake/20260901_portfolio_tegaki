@@ -154,7 +154,7 @@ h2 {
    ========================================================================== */
 
 /* ----- ハンバーガーボタン ----- */
-.header__humberger {
+.header__hamburger {
     position: fixed;
     z-index: 10;
     cursor: pointer;
@@ -293,7 +293,7 @@ header.is-open .header__list--sp::after {
 @media screen and (min-width: 1024px) {
 
     .header__list--sp,
-    .header__humberger--sp {
+    .header__hamburger--sp {
         display: none;
     }
 
@@ -711,15 +711,20 @@ header.is-open .header__list--sp::after {
     background-attachment: fixed;
 }
 
-.fv__name {
+/* 名前の白い帯(絶対配置。位置は padding で決める) */
+.fv__nameBox {
     position: absolute;
     top: 0;
     left: 0;
     padding: 20vw 10vw 5vw 10vw;
     width: 100%;
-    font-size: 2rem;
     text-align: left;
     background-color: var(--color-white);
+}
+
+/* 名前(h1) */
+.fv__name {
+    font-size: 2rem;
 }
 
 .fv__box {
@@ -747,7 +752,7 @@ header.is-open .header__list--sp::after {
         height: 100vh;
     }
 
-    .fv__name {
+    .fv__nameBox {
         padding: 50px;
     }
 }
@@ -763,7 +768,7 @@ header.is-open .header__list--sp::after {
         height: 110vh;
     }
 
-    .fv__name {
+    .fv__nameBox {
         padding: 5vh;
         padding-top: 80px;
     }
@@ -784,6 +789,11 @@ header.is-open .header__list--sp::after {
     align-items: center;
     gap: 15px;
     align-self: stretch;
+}
+
+/* スライド全体を詳細ページへのリンクにする */
+.top__works__link {
+    display: block;
 }
 
 .top__works__content {

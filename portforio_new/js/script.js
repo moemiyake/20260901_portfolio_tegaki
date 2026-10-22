@@ -44,10 +44,12 @@ var swiper = new Swiper('.mySwiper', {
 
 
 
-// header__humbergerを押すと、.is-openがつく。toggleタイプ。バニラJS
+// ハンバーガーボタン(.header__hamburger)を押すと、headerに.is-openがつく。toggleタイプ。バニラJS
 const header = document.querySelector('header');
-header.addEventListener('click', () => {
-  header.classList.toggle('is-open');
+const hamburger = document.querySelector('.header__hamburger');
+hamburger.addEventListener('click', () => {
+  const isOpen = header.classList.toggle('is-open');
+  hamburger.setAttribute('aria-expanded', isOpen); // スクリーンリーダー用(開閉状態を伝える)
 });
 
 // 「動きを減らす」設定の人にはアニメーションを止める
