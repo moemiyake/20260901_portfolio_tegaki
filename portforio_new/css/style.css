@@ -1,3 +1,61 @@
+/* ==========================================================================
+   Moe Miyake Portfolio - style.css
+
+   目次
+   00. Tokens(変数)
+   01. Base(全体の初期設定)
+   02. Swiper 共通の上書き        ※ 03以降の Swiper 系スタイルより前に置くこと
+   03. Layout: Header
+   04. Layout: Footer
+   05. Components(縦書きタイトル / Moreボタン / プロフィール共通)
+   06. Page: Top
+   07. Page: Works(一覧)
+   08. Page: About
+   09. Page: Works Item(各制作物)
+   10. Component: Exhibition(制作実績スライダー)
+   99. 削除候補(コメントアウト中)
+
+   ブレークポイント(モバイルファースト)
+   SP: ~767px / TB: 768px~ / PC: 1024px~
+   ※ 06(FV, Works スライダー)だけ 1025px~ が混在 → 99番の下にメモあり
+   ========================================================================== */
+
+
+/* ==========================================================================
+   00. Tokens
+   ========================================================================== */
+
+:root {
+    /* 文字色 */
+    --color-text: #3c3c3c;
+    --color-text-g: #B3B3B3;
+    --color-text-b: #84B5C5;
+
+    /* 背景・面 */
+    --color-white: #fff;
+    --color-gray: #F8F8F8;
+    --color-moegi: #AACF53;
+    --color-moegi-dark: #8ab535;
+
+    /* RGB値(rgba(var(--xxx-rgb), 0.5) の形で使う) */
+    --color-blue-rgb: 85, 159, 183;
+    --color-skyblue-rgb: 132, 181, 197;
+
+    /* 線・枠 */
+    --color-border: #777;
+    --color-border-light: #e5e5e5;
+    --color-border-dark: #5c5c5c;
+    --color-frame-side: #bababa;
+
+    /* フォント */
+    --font-en: "Lato", sans-serif;
+}
+
+
+/* ==========================================================================
+   01. Base
+   ========================================================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +69,12 @@
 
 html {
     scroll-behavior: smooth;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
 }
 
 body {
@@ -37,21 +101,59 @@ img {
     width: 100%;
 }
 
-:root {
-    --color-text: #3c3c3c;
-    --color-text-g: #B3B3B3;
-    --color-text-b: #84B5C5;
-    --color-gray: #F8F8F8;
-    --color-moegi: #AACF53;
-    --color-blue: 85, 159, 183;
-    --color-skyblue: 132, 181, 197;
-    /* RGB値 */
-    --color-white: #fff;
+/* 見出し(各ページの縦書きタイトルは 05 で上書き) */
+h2 {
+    font-family: var(--font-en);
+    font-weight: 300;
+    font-size: 48px;
+    letter-spacing: 1.5px;
+    padding: 0 30px;
+    width: 100%;
 }
 
-/* SP Fixメニュー */
 
-/* ハンバーガーボタン (open) */
+/* ==========================================================================
+   02. Swiper 共通の上書き
+   Swiper本体のクラスをグローバルに書き換えている。
+   skill(.swiper2)や exhibition(.mySwiper3)は、このあと個別に打ち消している。
+   ========================================================================== */
+
+.swiper {
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+}
+
+/* ページネーションの点 */
+.swiper-pagination-bullet {
+    background-color: var(--color-moegi);
+}
+
+.swiper-pagination-bullet-active {
+    background-color: var(--color-moegi-dark);
+}
+
+
+/* ==========================================================================
+   03. Layout: Header
+   SP: ハンバーガー + 右から出るカーテン / PC(1024px~): 右上に横並びナビ
+   ========================================================================== */
+
+/* ----- ハンバーガーボタン ----- */
 .header__humberger {
     position: fixed;
     z-index: 10;
@@ -64,7 +166,7 @@ img {
     right: 20px;
 }
 
-
+/* 2本線 */
 header span {
     &::before {
         width: 100%;
@@ -87,9 +189,7 @@ header span {
     }
 }
 
-
-
-/* ボタンを押したらバツになる */
+/* 開いたらバツになる */
 header.is-open span {
     &::before {
         transform: translateY(7px) rotate(135deg);
@@ -102,20 +202,7 @@ header.is-open span {
     }
 }
 
-
-/* ハンバーガーボタン (close) */
-header.is-open span:nth-child(1) {
-    transform: rotate(-45deg);
-    top: 6px;
-}
-
-header.is-open span:nth-child(2) {
-    transform: rotate(45deg);
-    bottom: 6px;
-}
-
-
-/* ハンバーガーメニュー */
+/* ----- メニュー共通 ----- */
 .header__list ul li a {
     font-size: 30px;
 }
@@ -124,21 +211,29 @@ header.is-open span:nth-child(2) {
     display: none;
 }
 
-/* カーテン */
+/* ----- SP: カーテン ----- */
 .header__list--sp {
     position: fixed;
     top: -5vh;
     right: -10px;
     width: 80%;
     height: 110vh;
-    background-color: rgba(var(--color-skyblue), 0.95);
+    z-index: 7;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(var(--color-skyblue-rgb), 0.95);
     backdrop-filter: blur(5px);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    z-index: 7;
+
     transform: translateX(110%);
     transition: transform 0.6s ease-in-out;
 }
 
+/* カーテンの左側の帯 */
 .header__list--sp::after {
     content: "";
     position: absolute;
@@ -146,18 +241,15 @@ header.is-open span:nth-child(2) {
     right: -5px;
     width: 128px;
     height: 110vh;
-    background-color: rgba(var(--color-blue), 0.3);
+    background-color: rgba(var(--color-blue-rgb), 0.3);
     backdrop-filter: blur(5px);
     filter: blur(1.5px);
     z-index: -1;
 }
 
+/* 開いた状態 + アニメーション */
 header.is-open .header__list--sp {
     transform: translateX(0);
-}
-
-/* カーテン アニメーション START */
-header.is-open .header__list--sp {
     animation:
         header__list1--keyframes1 3.5s linear,
         header__list1--keyframes2 3.5s linear;
@@ -170,8 +262,65 @@ header.is-open .header__list--sp::after {
         header__list2--keyframes3 3.5s linear;
 }
 
+.header__list--sp ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    gap: 1.5rem;
+    font-family: var(--font-en);
+    font-weight: 200;
+    letter-spacing: 3px;
 
-/* アニメーションのキーフレーム */
+    li {
+        color: var(--color-white);
+    }
+}
+
+.header__name {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-family: var(--font-en);
+    font-weight: 200;
+    color: var(--color-white);
+}
+
+/* ----- PC ----- */
+@media screen and (min-width: 1024px) {
+
+    .header__list--sp,
+    .header__humberger--sp {
+        display: none;
+    }
+
+    .header__list--pc {
+        display: flex;
+
+        ul {
+            position: fixed;
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            padding-right: 5vw;
+            padding-top: 1.5rem;
+            font-size: 1.5rem;
+            gap: 2rem;
+            font-family: var(--font-en);
+            font-weight: 200;
+            letter-spacing: 3px;
+        }
+    }
+}
+
+/* ----- カーテン アニメーション(keyframes) ----- */
+
+/* カーテン本体: 透明度 */
 @keyframes header__list1--keyframes1 {
     0% {
         animation-timing-function: ease-out;
@@ -187,6 +336,7 @@ header.is-open .header__list--sp::after {
     }
 }
 
+/* カーテン本体: 右からスライドして揺れて止まる */
 @keyframes header__list1--keyframes2 {
     0% {
         animation-timing-function: cubic-bezier(0.22, 0.68, 0.36, 1);
@@ -217,8 +367,7 @@ header.is-open .header__list--sp::after {
     }
 }
 
-
-/* 追加のアニメーション */
+/* 左の帯(::after): 透明度 */
 @keyframes header__list2--keyframes1 {
     0% {
         animation-timing-function: ease-out;
@@ -234,6 +383,7 @@ header.is-open .header__list--sp::after {
     }
 }
 
+/* 左の帯(::after): 幅の揺れ */
 @keyframes header__list2--keyframes2 {
     0% {
         width: 128px;
@@ -268,6 +418,7 @@ header.is-open .header__list--sp::after {
     }
 }
 
+/* 左の帯(::after): 位置の揺れ */
 @keyframes header__list2--keyframes3 {
     0% {
         translate: 320px -8px;
@@ -302,80 +453,254 @@ header.is-open .header__list--sp::after {
     }
 }
 
-/* カーテン アニメーション END */
 
+/* ==========================================================================
+   04. Layout: Footer
+   ========================================================================== */
 
-.header__list--sp {
+.footer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    /* height: 100vh; */
+    margin: 60px auto 30px;
+    gap: 40px;
+
+    font-family: var(--font-en);
+    font-weight: 300;
+    letter-spacing: 3px;
 }
 
-.header__list--sp ul {
+.footer__head {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    gap: 1.5rem;
-    font-family: "Lato", sans-serif;
-    font-weight: 200;
-    letter-spacing: 3px;
+    gap: 25px;
+}
 
-    li {
-        color: var(--color-white);
+/* 植木鉢(ページ先頭に戻る) */
+.footer__pageTop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 3px;
+}
+
+.footer__pageTop--plant {
+    width: 40px;
+}
+
+.footer__pageTop-arrow {
+    width: 8px;
+    transition: transform 0.5s ease;
+}
+
+.footer__pageTop:hover .footer__pageTop-arrow {
+    transform: translateY(-5px);
+}
+
+.footer__list ul {
+    display: flex;
+    gap: 40px;
+}
+
+.footer__list li a {
+    font-size: 20px;
+}
+
+.footer__copyright {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+
+/* ==========================================================================
+   05. Components
+   ========================================================================== */
+
+/* ----- 縦書きタイトル(Works / About / WorksItem 共通) ----- */
+
+.works__fix,
+.about__fix {
+    width: 100%;
+    height: 100vh;
+}
+
+.works h2,
+.about h2,
+.worksItem h2 {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: var(--font-en);
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: 1px;
+
+    padding: 0;
+    transform: rotate(90deg) translateY(-1em);
+    transform-origin: top left;
+
+    a {
+        font-size: 32px;
     }
 }
 
-.header__name {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.5rem;
-    font-family: "Lato", sans-serif;
-    font-weight: 200;
-    color: var(--color-white);
+/* ----- Moreボタン(Top / WorksItem 共通) ----- */
+
+.button {
+    cursor: pointer;
+}
+
+.button--more {
+    font-family: var(--font-en);
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.button__arrow {
+    transition: transform 0.5s ease;
+}
+
+.button--more:hover .button__arrow {
+    transform: translateX(5px);
+}
+
+/* Moreボタンを右寄せにする枠(Top) */
+.top__works__more,
+.top__about__more {
+    display: flex;
+    padding: 0 30px;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: stretch;
+}
+
+/* ----- プロフィール(Top / About 共通) -----
+   ※ PCのgrid指定はトップ用。Aboutページ側は 08 の .about__me 内で上書きしている */
+
+.about__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    padding: 30px;
+}
+
+.about__img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+.about__img img {
+    width: 60%;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+.about__name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.about__name--ja {
+    font-size: 18px;
+    letter-spacing: 3px;
+}
+
+.about__name--en {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--color-moegi);
+    font-family: var(--font-en);
+}
+
+.about__text {
+    padding: 10px 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.about__text p {
+    font-size: 13px;
+    line-height: 26px;
+    letter-spacing: 0.8px;
+    width: 100%;
+    text-align: left;
 }
 
 /* TB */
-@media screen and (min-width: 768px) {}
+@media screen and (min-width: 768px) {
+    .about__img img {
+        width: 30vw;
+        max-width: 200px;
+    }
+}
 
 /* PC */
 @media screen and (min-width: 1024px) {
+    .about__box {
+        width: 70%;
+        max-width: 1000px;
+        margin: 0 auto;
 
-    .header__list--sp,
-    .header__humberger--sp {
-        display: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+
+        align-items: start;
     }
 
-    .header__list--pc {
-        /* display: block; */
-        display: flex;
+    .about__img {
+        grid-area: 1 / 1 / 3 / 2;
+    }
 
-        ul {
-            position: fixed;
-            z-index: 10;
-            width: 100%;
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            padding-right: 5vw;
-            padding-top: 1.5rem;
-            font-size: 1.5rem;
-            gap: 2rem;
-            font-family: "Lato", sans-serif;
-            font-weight: 200;
-            letter-spacing: 3px;
-        }
+    .about__img img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .about__name {
+        grid-area: 1 / 2 / 2 / 3;
+        align-self: end;
+        align-items: start;
+        padding: 0 30px;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .about__text {
+        grid-area: 2 / 2 / 3 / 3;
+        font-size: 16px;
+        line-height: 1.6;
     }
 }
 
 
+/* ==========================================================================
+   06. Page: Top
+   ========================================================================== */
 
-/* FV */
+/* ----- FV ----- */
+
 .fv {
     position: relative;
     height: 100vh;
@@ -395,7 +720,6 @@ header.is-open .header__list--sp::after {
     font-size: 2rem;
     text-align: left;
     background-color: var(--color-white);
-
 }
 
 .fv__box {
@@ -413,7 +737,7 @@ header.is-open .header__list--sp::after {
     margin-bottom: -1px;
 }
 
-/* タブレット向け */
+/* TB */
 @media screen and (min-width: 768px) {
     .fv {
         height: 100vh;
@@ -428,10 +752,8 @@ header.is-open .header__list--sp::after {
     }
 }
 
-
-/* PC向け */
+/* PC(1025px~) */
 @media screen and (min-width: 1025px) {
-
     .fv {
         background-image: url(../img/fv__background--pc.jpg);
         height: 110vh;
@@ -446,7 +768,6 @@ header.is-open .header__list--sp::after {
         padding-top: 80px;
     }
 
-
     .fv__house {
         display: flex;
         align-items: end;
@@ -454,19 +775,7 @@ header.is-open .header__list--sp::after {
     }
 }
 
-/* FV__WORKS */
-
-/* 共通設定に移動？ */
-h2 {
-    /* color: #3C3C3C; */
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-    font-size: 48px;
-    letter-spacing: 1.5px;
-    padding: 0 30px;
-
-    width: 100%;
-}
+/* ----- Works(スライダー) ----- */
 
 .top__works {
     display: flex;
@@ -477,87 +786,6 @@ h2 {
     align-self: stretch;
 }
 
-.top__works__list {
-    display: flex;
-    padding: 20px 0;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    align-self: stretch;
-}
-
-/* 共通設定に移動？ */
-.top__works__more,
-.top__about__more {
-    display: flex;
-    padding: 0 30px;
-    justify-content: flex-end;
-    align-items: center;
-    align-self: stretch;
-}
-
-/* 共通設定に移動？ */
-.button {
-    cursor: pointer;
-}
-
-.button--more {
-    font-family: "Lato", sans-serif;
-    font-size: 24px;
-    font-weight: 300;
-    letter-spacing: 1.5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.button__arrow {
-    transition: transform 0.5s ease;
-}
-
-.button--more:hover .button__arrow {
-    transform: translateX(5px);
-}
-
-
-
-/* swiper */
-/* Demo styles */
-html,
-body {
-    position: relative;
-    height: 100%;
-}
-
-.swiper {
-    width: 100%;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: auto;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    object-fit: cover;
-    /* height: 50vh; */
-    aspect-ratio: 4 / 5;
-}
-
-/* 書き足し */
-.top__works__swiper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .top__works__content {
     display: flex;
     flex-direction: column;
@@ -566,6 +794,19 @@ body {
     padding: 8px 0;
 }
 
+.top__works__title {
+    font-size: 18px;
+    letter-spacing: 3px;
+}
+
+.top__works__category {
+    color: var(--color-text-g);
+    font-family: var(--font-en);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+/* coverflowの影(Swiperの影を画像比率に合わせる) */
 .top__works .mySwiper .swiper-slide-shadow-left,
 .top__works .mySwiper .swiper-slide-shadow-right {
     height: auto;
@@ -580,38 +821,10 @@ body {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
 }
 
-.top__works__title {
-    /* font-family: "Lato", sans-serif; */
-    font-size: 18px;
-    letter-spacing: 3px;
-}
-
-.top__works__category {
-    color: #B3B3B3;
-    font-family: "Lato", sans-serif;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-}
-
-/* Swiperの点（デフォルト状態）の色を黄緑色に変更 */
-.swiper-pagination-bullet {
-    background-color: var(--color-moegi);
-}
-
-/* Swiperの点（アクティブ状態）の色を変更 */
-.swiper-pagination-bullet-active {
-    background-color: #8ab535;
-}
-
-/* タブレット用 */
+/* TB */
 @media screen and (min-width: 768px) {
-
     .top__works .mySwiper {
         width: 100%;
-    }
-
-    .works h2 {
-        padding: 0 60px;
     }
 
     .top__works__more {
@@ -619,7 +832,7 @@ body {
     }
 }
 
-/* PC用 */
+/* PC(1025px~): 画像の背景をぼかして敷く */
 @media screen and (min-width: 1025px) {
     .top__works .mySwiper {
         max-width: none;
@@ -665,9 +878,8 @@ body {
     }
 }
 
+/* ----- About ----- */
 
-
-/* About */
 .top__about {
     display: flex;
     flex-direction: column;
@@ -678,250 +890,24 @@ body {
     background-color: var(--color-gray);
 }
 
-.about__box {
-    display: flex;
-    /* max-width: 1000px; */
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    align-self: stretch;
-    padding: 30px;
-}
-
-.about__img {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: stretch;
-}
-
-.about__img img {
-    width: 60%;
-    border-radius: 30px;
-    object-fit: cover;
-}
-
-.about__name {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-}
-
-.about__name--ja {
-    font-size: 18px;
-    letter-spacing: 3px;
-}
-
-.about__name--en {
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    color: var(--color-moegi);
-    font-family: "Lato", sans-serif;
-}
-
-.about__text {
-    padding: 10px 30px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.about__text p {
-    font-size: 13px;
-    line-height: 26px;
-    letter-spacing: 0.8px;
-    width: 100%;
-    text-align: left;
-}
-
-.certificate {
-    display: flex;
-    padding: 100px 35px;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5em;
-    text-align: center;
-
-    ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-
-        li {
-            text-align: center;
-        }
-    }
-}
-
-
-/* タブレット向け */
+/* TB */
 @media screen and (min-width: 768px) {
     .top__about {
         padding: 50px 30px;
     }
-
-    .about__img img {
-        width: 30vw;
-        max-width: 200px;
-    }
 }
 
-
-/* PC向け */
+/* PC */
 @media screen and (min-width: 1024px) {
     .top__about {
         padding: 80px 60px;
     }
-
-
-    .about__box {
-        width: 70%;
-        max-width: 1000px;
-        margin: 0 auto;
-
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, auto);
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-
-        align-items: start;
-    }
-
-    .about__img {
-        grid-area: 1 / 1 / 3 / 2;
-    }
-
-    .about__name {
-        grid-area: 1 / 2 / 2 / 3;
-        align-self: end;
-        align-items: start;
-        padding: 0 30px;
-    }
-
-    .about__text {
-        grid-area: 2 / 2 / 3 / 3;
-    }
-
-    .about__img img {
-        width: 100%;
-        max-width: 250px;
-        height: auto;
-        border-radius: 10px;
-    }
-
-    .about__name {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    .about__text {
-        font-size: 16px;
-        line-height: 1.6;
-    }
 }
 
 
-/* Footer */
-
-.footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 60px auto 30px;
-    gap: 40px;
-
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-    letter-spacing: 3px;
-}
-
-.footer__head {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-}
-
-.footer__pageTop {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    gap: 3px;
-
-
-}
-
-.footer__pageTop--plant {
-    width: 40px;
-}
-
-.footer__pageTop-arrow {
-    width: 8px;
-    transition: transform 0.5s ease;
-
-}
-
-.footer__pageTop:hover .footer__pageTop-arrow {
-    transform: translateY(-5px);
-}
-
-.footer__list ul {
-    display: flex;
-    gap: 40px;
-}
-
-.footer__list li a {
-    font-size: 20px;
-}
-
-.footer__copyright {
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    margin-bottom: 10px;
-}
-
-
-
-/* Works About 共通 START */
-
-.works__fix,
-.about__fix {
-    width: 100%;
-    height: 100vh;
-}
-
-.works h2,
-.about h2,
-.worksItem h2 {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-family: "Lato", sans-serif;
-    font-weight: 300;
-    font-size: 32px;
-    letter-spacing: 1px;
-
-    padding: 0;
-    transform: rotate(90deg) translateY(-1em);
-    transform-origin: top left;
-
-    a {
-        font-size: 32px;
-    }
-}
-
-/* Works About 共通 END */
-
-
-
-/* Works START */
+/* ==========================================================================
+   07. Page: Works(一覧)
+   ========================================================================== */
 
 .works {
     position: relative;
@@ -942,8 +928,7 @@ body {
     gap: 100px;
 }
 
-
-
+/* カテゴリ絞り込み(画面下に固定) */
 .works__headerCategory {
     position: fixed;
     z-index: 10;
@@ -955,7 +940,6 @@ body {
     overflow-y: hidden;
     white-space: nowrap;
     text-align: center;
-
 
     ul {
         display: inline-flex;
@@ -970,12 +954,12 @@ body {
             padding: 5px 10px;
 
             border-radius: 30px;
-            border: 1px solid #777;
+            border: 1px solid var(--color-border);
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(1.5px);
 
             color: var(--color-text);
-            font-family: Lato;
+            font-family: var(--font-en);
             font-size: 12px;
             font-weight: 500;
             letter-spacing: 1px;
@@ -983,6 +967,7 @@ body {
     }
 }
 
+/* 作品カード */
 .works__container {
     display: flex;
     flex-direction: column;
@@ -1022,6 +1007,7 @@ body {
     letter-spacing: 1px;
 }
 
+/* ページネーション */
 .works__pagination {
     width: 100%;
     padding: 15px 35px 30px;
@@ -1031,7 +1017,7 @@ body {
     align-self: stretch;
 
     a {
-        font-family: "Lato", sans-serif;
+        font-family: var(--font-en);
     }
 
     .works__pagination--number {
@@ -1050,16 +1036,16 @@ body {
             gap: 10px;
 
             border-radius: 50px;
-            border: 1px solid #777;
+            border: 1px solid var(--color-border);
             font-size: 12px;
         }
     }
 }
 
-/* Works END */
 
-
-/* About START */
+/* ==========================================================================
+   08. Page: About
+   ========================================================================== */
 
 .about {
     position: relative;
@@ -1068,7 +1054,47 @@ body {
     background-color: var(--color-white);
 }
 
-/* ===== swiper2 / skill(できること) ===== */
+.about section {
+    padding: 50px 0;
+}
+
+/* ----- 見出し(わたしのこと / できること / 保有資格 共通) ----- */
+
+.about__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 30px auto 20px;
+
+    h3 {
+        color: var(--color-text);
+        font-size: 32px;
+        font-weight: 500;
+        letter-spacing: 3.9px;
+    }
+
+    p {
+        color: var(--color-moegi);
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 3.9px;
+        margin-top: 0.5em;
+    }
+}
+
+/* ----- わたしのこと ----- */
+
+.about__me {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----- できること(swiper2 / skill) ----- */
 
 /* SP: 画面幅の80%。大きくなりすぎないよう上限をつける */
 .swiper2 {
@@ -1079,7 +1105,6 @@ body {
 
 .skill {
     width: 100%;
-    /* height: 100vh; */
     background-color: var(--color-gray);
     display: flex;
     flex-direction: column;
@@ -1092,12 +1117,20 @@ body {
     padding: 50px 0 90px;
 }
 
-/* カード本体。縁取りをもえぎ色にして、重なったときに後ろのカードも見分けられるようにする */
+/* カード本体。縁取りをもえぎ色にして、重なったときに後ろのカードも見分けられるようにする
+   後ろに重なるカードは淡いグレーにする。
+   色は専用の層(::before)で重ねて、その透明度だけをアニメーションさせる。
+   --skill-speed は script.js の speed(700ms)に合わせること */
 .skill__card {
+    --skill-speed: 0.7s;
+    position: relative;
+    /* ::before(色の層)の基準にする */
+    isolation: isolate;
+
     background-color: var(--color-white);
     border: 1px solid var(--color-gray);
     border-radius: 36px;
-    box-shadow: 0 10px 24px rgba(var(--color-blue), 0.18);
+    box-shadow: 0 10px 24px rgba(var(--color-blue-rgb), 0.18);
     width: 100%;
     height: 100%;
     display: flex;
@@ -1107,23 +1140,12 @@ body {
     padding: 32px 26px 36px;
 }
 
-/* 後ろに重なるカードは、淡いグレーにする。
-   色は専用の層(::before)で重ねて、その透明度だけをアニメーションさせる。
-   --skill-speed は script.js の speed(700ms)に合わせること */
-.skill__card {
-    --skill-speed: 0.7s;
-    position: relative;
-    /* ::before(色の層)の基準にする */
-    isolation: isolate;
-}
-
 .skill__card::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    /* グレーは0.5% */
     background-color: var(--color-gray);
     opacity: 1;
     pointer-events: none;
@@ -1183,7 +1205,7 @@ body {
     }
 }
 
-/* タブレット: 少しだけ大きく */
+/* TB: 少しだけ大きく */
 @media screen and (min-width: 768px) {
     .swiper2 {
         max-width: 440px;
@@ -1243,46 +1265,33 @@ body {
     }
 }
 
-.about section {
-    padding: 50px 0;
-    /* height: auto; */
-}
+/* ----- 保有資格 ----- */
+/* ※ padding は .about section(50px 0)に上書きされていて、100px 35px は効いていない */
 
-.about__me {
-    width: 100%;
-    height: 100vh;
+.certificate {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.about__title {
-    display: flex;
+    padding: 100px 35px;
     flex-direction: column;
     align-items: center;
+    gap: 1.5em;
+    text-align: center;
 
-    margin: 30px auto 20px;
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
 
-    h3 {
-        color: var(--color-text);
-        font-size: 32px;
-        font-weight: 500;
-        letter-spacing: 3.9px;
-    }
-
-    p {
-        color: var(--color-moegi);
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: 3.9px;
-        margin-top: 0.5em;
+        li {
+            text-align: center;
+        }
     }
 }
 
-/* ===== .about__me(わたしのこと) PC ===== */
-/* トップページ用の .about__box / .about__img などのPC指定(2カラムのgrid)が
-   aboutページにも効いてしまうため、.about__me の中だけで上書きする */
+/* ----- .about__me(わたしのこと) PC -----
+   05 のプロフィール共通(トップ用のgrid指定)が aboutページにも効いてしまうため、
+   .about__me の中だけで上書きする */
 @media screen and (min-width: 1024px) {
 
     /* 画面に収まらないときは伸ばす(100vhに固定すると上が切れる) */
@@ -1370,10 +1379,10 @@ body {
     }
 }
 
-/* About END */
 
-
-/* WorksItem(各制作物) START */
+/* ==========================================================================
+   09. Page: Works Item(各制作物)
+   ========================================================================== */
 
 .worksItem {
     width: 100%;
@@ -1391,6 +1400,7 @@ body {
     flex-shrink: 0;
 }
 
+/* 左側(FV画像)。PCでは画面に固定 */
 .worksItem__fixLeft {
     padding-top: 130px;
 
@@ -1408,7 +1418,8 @@ body {
     width: 100%;
 }
 
-/* worksFv */
+/* ----- worksFv(タイトル・カテゴリ・説明文) ----- */
+
 .worksFv__container {
     display: flex;
     flex-direction: column;
@@ -1417,15 +1428,6 @@ body {
     padding: 0 10px;
 }
 
-
-/* タイトル */
-/* .worksFv__title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 0;
-} */
-
 .worksFv__name {
     color: var(--color-text);
     font-size: 20px;
@@ -1433,8 +1435,10 @@ body {
     letter-spacing: 2.8px;
 }
 
-/* カテゴリ */
 .worksFv__category {
+    font-weight: 300;
+    letter-spacing: 1.5px;
+
     ul {
         display: flex;
         gap: 10px;
@@ -1443,15 +1447,11 @@ body {
 
     li a {
         color: var(--color-text-b);
-        font-family: "Lato", sans-serif;
+        font-family: var(--font-en);
         font-size: 12px;
     }
-
-    font-weight: 300;
-    letter-spacing: 1.5px;
 }
 
-/* テキスト */
 .worksFv__text {
     margin-top: 1em;
     font-size: 14px;
@@ -1460,7 +1460,8 @@ body {
     font-weight: normal;
 }
 
-/* モックアップ・説明写真 */
+/* ----- モックアップ・説明写真 ----- */
+
 .worksImg {
     width: 100%;
 }
@@ -1469,18 +1470,18 @@ body {
     width: 100%;
 }
 
+/* ----- Project(詳細情報) ----- */
 
-/* Ploject(詳細情報) */
 .project {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-/* -- 区切り線 */
+/* 区切り線つきの1項目 */
 .project__container {
     padding: 24px 10px;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--color-border-light);
     width: 100%;
 
     display: flex;
@@ -1492,8 +1493,7 @@ body {
     border-bottom: none;
 }
 
-
-/* -- 見出し */
+/* 見出し */
 .project__title {
     color: var(--color-text-b);
     font-size: 14px;
@@ -1501,15 +1501,15 @@ body {
     letter-spacing: 1.5px;
 }
 
-/* -- 本文テキスト */
+/* 本文テキスト */
 .project__text {
     width: 100%;
     font-size: 14px;
     line-height: 23px;
     letter-spacing: 1.5px;
     font-weight: normal;
+    /* 長いURLを途中で折り返す */
     overflow-wrap: anywhere;
-    /* ← 追加：長いURLを途中で折り返す */
 
     a {
         width: 100%;
@@ -1525,9 +1525,8 @@ body {
     }
 }
 
-/* 外部ページリンク　アイコン */
+/* 外部ページリンクのアイコン */
 .project__text a::after {
-    /* icon__openLink.svgを配置する */
     content: url(../img/icon__openLink.svg);
     display: inline-block;
     width: 16px;
@@ -1536,8 +1535,7 @@ body {
     vertical-align: middle;
 }
 
-
-/* PC: 左はsticky、右はページと一緒にスクロール */
+/* ----- PC: 左はsticky、右はページと一緒にスクロール ----- */
 @media screen and (min-width: 1024px) {
     .worksFv__title {
         margin-top: 2em;
@@ -1545,16 +1543,12 @@ body {
 
     .worksFv__text {
         margin-top: 0.5em;
-        /* font-size: 14px; */
-        /* line-height: 23px; */
-        /* letter-spacing: 1.5px; */
-        /* font-weight: normal; */
     }
 
     .worksItem__container {
         flex-direction: row;
-        align-items: flex-start;
         /* 左を引き伸ばさない(stickyが動く余地を残す) */
+        align-items: flex-start;
     }
 
     .worksItem__fixLeft {
@@ -1576,16 +1570,17 @@ body {
 
     .worksItem__fixRight {
         flex: 1;
-        padding: 2.5vh 0;
         /* 左画像の上下の余白(100vh - 95vh)の半分 */
+        padding: 2.5vh 0;
         gap: 10px;
     }
 }
 
-/* Works-detail END */
 
-
-/* Exhibition(制作実績スライダー) START */
+/* ==========================================================================
+   10. Component: Exhibition(制作実績スライダー)
+   ※ 02 の .swiper / .swiper-slide img を打ち消すため、必ずそれらより後ろに置く
+   ========================================================================== */
 
 .exhibition {
     display: flex;
@@ -1603,15 +1598,14 @@ body {
 }
 
 .exhibition__title {
-    font-family: "Lato", sans-serif;
+    font-family: var(--font-en);
     font-size: 32px;
     font-weight: 300;
     letter-spacing: 1px;
 }
 
+/* ----- スライダー本体 ----- */
 
-/* スライダー本体 */
-/* ※ style.css 前半の .swiper(padding) / .swiper-slide / .swiper-slide img を打ち消すため、必ずそれらより後ろに置く */
 .exhibition__showcase {
     position: relative;
     width: 100%;
@@ -1642,15 +1636,12 @@ body {
     display: flex;
     height: 215px;
     align-items: flex-start;
-}
-
-/* 一定速度で流すため、SwiperのCSS(ease)を上書き */
-.exhibition__track {
+    /* 一定速度で流すため、SwiperのCSS(ease)を上書き */
     transition-timing-function: linear;
 }
 
+/* ----- カード ----- */
 
-/* カード */
 .exhibition__card {
     display: flex;
     width: 180px;
@@ -1684,6 +1675,8 @@ body {
     outline-offset: 5px;
 }
 
+/* ⚠ 要確認: .exhibition__card.exhibition__cardImage は両方のクラスを持つ要素がなく、
+   たぶん .exhibition__cardImage のタイポ。直すと画像が180x180になるので見た目が変わる(ステップ2で判断) */
 .exhibition__card.exhibition__cardImage,
 .exhibition__cardCrop {
     width: 180px;
@@ -1696,7 +1689,7 @@ body {
 }
 
 .exhibition__cardImage--bordered {
-    border: 1px solid #5c5c5c;
+    border: 1px solid var(--color-border-dark);
 }
 
 /* 画像の一部だけを見せる(ロゴ・アイコン) */
@@ -1744,8 +1737,8 @@ body {
     letter-spacing: 1px;
 }
 
+/* ----- 枠(CSS製。幅が変わっても斜めの角度が一定) ----- */
 
-/* 枠(CSS製。幅が変わっても斜めの角度が一定) */
 .exhibition__frame {
     position: absolute;
     /* 左右に2pxはみ出させ、showcaseのoverflowで切る(小数点位置でも縁が透けない) */
@@ -1801,7 +1794,7 @@ body {
     top: 0;
     width: var(--side);
     height: 100%;
-    background-color: #bababa;
+    background-color: var(--color-frame-side);
 }
 
 .exhibition__frameLeft {
@@ -1814,7 +1807,8 @@ body {
     clip-path: polygon(100% 0, 0 var(--top), 0 calc(100% - var(--bottom)), 100% 100%);
 }
 
-/* 植木鉢 */
+/* ----- 植木鉢 ----- */
+
 .exhibition__plant {
     position: absolute;
     top: 194px;
@@ -1826,8 +1820,8 @@ body {
     pointer-events: none;
 }
 
+/* ----- More(.button--more はトップページと共通) ----- */
 
-/* More(.button--more はトップページと共通) */
 .exhibition__more {
     display: flex;
     width: 100%;
@@ -1836,18 +1830,60 @@ body {
     align-items: center;
 }
 
-/* タブレット向け(枠だけ広げ、カードは同じサイズ) */
+/* TB(枠だけ広げ、カードは同じサイズ) */
 @media screen and (min-width: 768px) {
     .exhibition {
         margin-top: 50px;
     }
 }
 
-/* PC向け */
+/* PC */
 @media screen and (min-width: 1024px) {
     .exhibition {
         width: 86%;
     }
 }
 
-/* Exhibition(制作実績スライダー) END */
+
+/* ==========================================================================
+   99. 削除候補(コメントアウト中)
+   HTMLやJSから使われていない / 他のルールに上書きされて効いていないもの。
+   問題なければこのブロックごと削除してOK。
+   ========================================================================== */
+
+/* HTML・JSに登場しない(WordPress化で使う予定がなければ削除)
+.top__works__list {
+    display: flex;
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+}
+
+.top__works__swiper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+*/
+
+/* <span> が1つだけで、インライン要素のため transform / top / bottom が効かない
+header.is-open span:nth-child(1) {
+    transform: rotate(-45deg);
+    top: 6px;
+}
+
+header.is-open span:nth-child(2) {
+    transform: rotate(45deg);
+    bottom: 6px;
+}
+*/
+
+/* 後ろの `.works h2 { padding: 0 }`(05)に上書きされて効いていない(旧: タブレット用)
+@media screen and (min-width: 768px) {
+    .works h2 {
+        padding: 0 60px;
+    }
+}
+*/
