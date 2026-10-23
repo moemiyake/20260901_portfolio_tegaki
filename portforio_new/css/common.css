@@ -1,0 +1,718 @@
+/* ==========================================================================
+   common.css - 全ページ共通(変数 / 全体の初期設定 / Header / Footer / 共通部品)
+
+   読み込み順: destyle.css → common.css → (ページ別CSS)
+
+   目次
+   1. Tokens(変数)
+   2. Base(全体の初期設定)
+   3. Layout: Header
+   4. Layout: Footer
+   5. Components(縦書きタイトル / Moreボタン / プロフィール共通 / カテゴリ絞り込み)
+
+   ブレークポイント(モバイルファースト)
+   SP: ~767px / TB: 768px~ / PC: 1024px~
+   ※ script.js(window.innerWidth >= 1024)と index.html の <picture> も同じ境目
+   ========================================================================== */
+
+
+/* ==========================================================================
+   Tokens
+   ========================================================================== */
+
+:root {
+    /* 文字色 */
+    --color-text: #3c3c3c;
+    --color-text-g: #B3B3B3;
+    --color-text-b: #84B5C5;
+
+    /* 背景・面 */
+    --color-white: #fff;
+    --color-gray: #F8F8F8;
+    --color-moegi: #AACF53;
+    --color-moegi-dark: #8ab535;
+
+    /* RGB値(rgba(var(--xxx-rgb), 0.5) の形で使う) */
+    --color-blue-rgb: 85, 159, 183;
+    --color-skyblue-rgb: 132, 181, 197;
+
+    /* 線・枠 */
+    --color-border: #777;
+    --color-border-light: #e5e5e5;
+    --color-border-dark: #5c5c5c;
+    --color-frame-side: #bababa;
+
+    /* フォント */
+    --font-en: "Lato", sans-serif;
+}
+
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 文字の基本設定(子要素に継承される)。rem の基準を14pxに保つため html に置く */
+html {
+    scroll-behavior: smooth;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #3c3c3c;
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 1.5;
+}
+
+html,
+body {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+    transition: opacity 0.5s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+li {
+    list-style: none;
+}
+
+img {
+    width: 100%;
+}
+
+/* 見出し(各ページの縦書きタイトルは 05 で上書き) */
+h2 {
+    font-family: var(--font-en);
+    font-weight: 300;
+    font-size: 48px;
+    letter-spacing: 1.5px;
+    padding: 0 30px;
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   Layout: Header
+   SP: ハンバーガー + 右から出るカーテン / PC(1024px~): 右上に横並びナビ
+   ========================================================================== */
+
+/* ----- ハンバーガーボタン ----- */
+.header__hamburger {
+    position: fixed;
+    z-index: 10;
+    cursor: pointer;
+
+    width: 30px;
+    height: 30px;
+
+    top: 20px;
+    right: 20px;
+}
+
+/* 2本線 */
+header span {
+    &::before {
+        width: 100%;
+        height: 1px;
+        content: '';
+        background-color: var(--color-text);
+        position: absolute;
+        top: 7px;
+        transition: all 0.6s ease-in-out;
+    }
+
+    &::after {
+        width: 100%;
+        height: 1px;
+        content: '';
+        background-color: var(--color-text);
+        position: absolute;
+        bottom: 7px;
+        transition: all 0.7s ease-in-out;
+    }
+}
+
+/* 開いたらバツになる */
+header.is-open span {
+    &::before {
+        transform: translateY(7px) rotate(135deg);
+        background-color: var(--color-white);
+    }
+
+    &::after {
+        transform: translateY(-7px) rotate(225deg);
+        background-color: var(--color-white);
+    }
+}
+
+/* ----- メニュー共通 ----- */
+.header__list ul li a {
+    font-size: 30px;
+}
+
+.header__list--pc {
+    display: none;
+}
+
+/* ----- SP: カーテン ----- */
+.header__list--sp {
+    position: fixed;
+    top: -5vh;
+    right: -10px;
+    width: 80%;
+    height: 110vh;
+    z-index: 7;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(var(--color-skyblue-rgb), 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+    transform: translateX(110%);
+    transition: transform 0.6s ease-in-out;
+}
+
+/* カーテンの左側の帯 */
+.header__list--sp::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 128px;
+    height: 110vh;
+    background-color: rgba(var(--color-blue-rgb), 0.3);
+    backdrop-filter: blur(5px);
+    filter: blur(1.5px);
+    z-index: -1;
+}
+
+/* 開いた状態 + アニメーション */
+header.is-open .header__list--sp {
+    transform: translateX(0);
+    animation:
+        header__list1--keyframes1 3.5s linear,
+        header__list1--keyframes2 3.5s linear;
+}
+
+header.is-open .header__list--sp::after {
+    animation:
+        header__list2--keyframes1 3.5s linear,
+        header__list2--keyframes2 3.5s linear,
+        header__list2--keyframes3 3.5s linear;
+}
+
+.header__list--sp ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    gap: 1.5rem;
+    font-family: var(--font-en);
+    font-weight: 300;
+    letter-spacing: 3px;
+
+    li {
+        color: var(--color-white);
+    }
+}
+
+.header__name {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-family: var(--font-en);
+    font-weight: 300;
+    color: var(--color-white);
+}
+
+/* ----- PC ----- */
+@media screen and (min-width: 1024px) {
+
+    .header__list--sp,
+    .header__hamburger--sp {
+        display: none;
+    }
+
+    .header__list--pc {
+        display: flex;
+
+        ul {
+            position: fixed;
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            padding-right: 5vw;
+            padding-top: 1.5rem;
+            font-size: 1.5rem;
+            gap: 2rem;
+            font-family: var(--font-en);
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+    }
+}
+
+/* ----- カーテン アニメーション(keyframes) ----- */
+
+/* カーテン本体: 透明度 */
+@keyframes header__list1--keyframes1 {
+    0% {
+        animation-timing-function: ease-out;
+        opacity: 0;
+    }
+
+    5.714% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* カーテン本体: 右からスライドして揺れて止まる */
+@keyframes header__list1--keyframes2 {
+    0% {
+        animation-timing-function: cubic-bezier(0.22, 0.68, 0.36, 1);
+        transform: translate(340px, -12px);
+    }
+
+    27.143% {
+        animation-timing-function: cubic-bezier(0.34, 0.8, 0.64, 1);
+        transform: translate(-10px, 5px);
+    }
+
+    44.286% {
+        animation-timing-function: ease;
+        transform: translate(6px, 2px);
+    }
+
+    60% {
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translate(-2px, -0.8px);
+    }
+
+    75.714% {
+        transform: translate(0px, 0px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+/* 左の帯(::after): 透明度 */
+@keyframes header__list2--keyframes1 {
+    0% {
+        animation-timing-function: ease-out;
+        opacity: 0;
+    }
+
+    8.571% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 左の帯(::after): 幅の揺れ */
+@keyframes header__list2--keyframes2 {
+    0% {
+        width: 128px;
+    }
+
+    4% {
+        animation-timing-function: cubic-bezier(0.22, 0.68, 0.36, 1);
+        width: 128px;
+    }
+
+    17.143% {
+        animation-timing-function: ease;
+        width: 120px;
+    }
+
+    32.857% {
+        animation-timing-function: cubic-bezier(0.34, 0.8, 0.64, 1);
+        width: 136px;
+    }
+
+    52.857% {
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        width: 124px;
+    }
+
+    74.286% {
+        width: 128px;
+    }
+
+    100% {
+        width: 128px;
+    }
+}
+
+/* 左の帯(::after): 位置の揺れ */
+@keyframes header__list2--keyframes3 {
+    0% {
+        translate: 320px -8px;
+    }
+
+    4% {
+        animation-timing-function: cubic-bezier(0.22, 0.68, 0.36, 1);
+        translate: 320px -8px;
+    }
+
+    30% {
+        animation-timing-function: cubic-bezier(0.34, 0.8, 0.64, 1);
+        translate: -8px 4px;
+    }
+
+    47.143% {
+        animation-timing-function: ease;
+        translate: 5px 1.5px;
+    }
+
+    62.857% {
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        translate: -1.5px -0.5px;
+    }
+
+    78.571% {
+        translate: 0px 0px;
+    }
+
+    100% {
+        translate: 0px 0px;
+    }
+}
+
+
+/* ==========================================================================
+   Layout: Footer
+   ========================================================================== */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px auto 30px;
+    gap: 40px;
+
+    font-family: var(--font-en);
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+.footer__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+/* 植木鉢(ページ先頭に戻る) */
+.footer__pageTop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 3px;
+}
+
+.footer__pageTop--plant {
+    width: 40px;
+}
+
+.footer__pageTop-arrow {
+    width: 8px;
+    transition: transform 0.5s ease;
+}
+
+.footer__pageTop:hover .footer__pageTop-arrow {
+    transform: translateY(-5px);
+}
+
+.footer__list ul {
+    display: flex;
+    gap: 40px;
+}
+
+.footer__list li a {
+    font-size: 20px;
+}
+
+.footer__copyright {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+
+/* ----- 削除候補(コメントアウト中。問題なければ削除してOK) ----- */
+
+/* <span> が1つだけで、インライン要素のため transform / top / bottom が効かない
+header.is-open span:nth-child(1) {
+    transform: rotate(-45deg);
+    top: 6px;
+}
+
+header.is-open span:nth-child(2) {
+    transform: rotate(45deg);
+    bottom: 6px;
+}
+*/
+
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+/* ----- 縦書きタイトル(Works / About / WorksItem 共通) ----- */
+
+.works__fix,
+.about__fix {
+    width: 100%;
+    height: 100vh;
+}
+
+.works h2,
+.about h2,
+.worksItem h2 {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-family: var(--font-en);
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: 1px;
+
+    padding: 0;
+    transform: rotate(90deg) translateY(-1em);
+    transform-origin: top left;
+}
+
+/* ----- Moreボタン(Top / WorksItem 共通) ----- */
+
+.button {
+    cursor: pointer;
+}
+
+.button--more {
+    font-family: var(--font-en);
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.button__arrow {
+    transition: transform 0.5s ease;
+}
+
+.button--more:hover .button__arrow {
+    transform: translateX(5px);
+}
+
+/* Moreボタンを右寄せにする枠(Top) */
+.top__works__more,
+.top__about__more {
+    display: flex;
+    padding: 0 30px;
+    justify-content: flex-end;
+    align-items: center;
+    align-self: stretch;
+}
+
+/* ----- プロフィール(Top / About 共通) -----
+   ※ PCのgrid指定はトップ用。Aboutページ側は about.css の .about__me 内で上書きしている */
+
+.about__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    padding: 30px;
+}
+
+.about__img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+}
+
+.about__img img {
+    width: 60%;
+    border-radius: 30px;
+    object-fit: cover;
+}
+
+.about__name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.about__name--ja {
+    font-size: 18px;
+    letter-spacing: 3px;
+}
+
+.about__name--en {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    color: var(--color-moegi);
+    font-family: var(--font-en);
+}
+
+.about__text {
+    padding: 10px 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.about__text p {
+    font-size: 13px;
+    line-height: 26px;
+    letter-spacing: 0.8px;
+    width: 100%;
+    text-align: left;
+}
+
+/* TB */
+@media screen and (min-width: 768px) {
+    .about__img img {
+        width: 30vw;
+        max-width: 200px;
+    }
+}
+
+/* PC */
+@media screen and (min-width: 1024px) {
+    .about__box {
+        width: 70%;
+        max-width: 1000px;
+        margin: 0 auto;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+
+        align-items: start;
+    }
+
+    .about__img {
+        grid-area: 1 / 1 / 3 / 2;
+    }
+
+    .about__img img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .about__name {
+        grid-area: 1 / 2 / 2 / 3;
+        align-self: end;
+        align-items: start;
+        padding: 0 30px;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .about__text {
+        grid-area: 2 / 2 / 3 / 3;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+}
+
+
+/* ----- カテゴリ絞り込み(Works / Works Item 共通。画面下に固定) ----- */
+
+.works__headerCategory {
+    position: fixed;
+    z-index: 10;
+    bottom: 5px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    text-align: center;
+
+    ul {
+        display: inline-flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+
+        li a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px 10px;
+
+            border-radius: 30px;
+            border: 1px solid var(--color-border);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(1.5px);
+
+            color: var(--color-text);
+            font-family: var(--font-en);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+
+/* ----- 削除候補(コメントアウト中。問題なければ削除してOK) ----- */
+
+/* 後ろの `.works h2 { padding: 0 }`(このファイルの縦書きタイトル)に上書きされて効いていない(旧: タブレット用)
+@media screen and (min-width: 768px) {
+    .works h2 {
+        padding: 0 60px;
+    }
+}
+*/

@@ -4,20 +4,19 @@
    目次
    00. Tokens(変数)
    01. Base(全体の初期設定)
-   02. Swiper 共通の上書き        ※ 03以降の Swiper 系スタイルより前に置くこと
-   03. Layout: Header
-   04. Layout: Footer
-   05. Components(縦書きタイトル / Moreボタン / プロフィール共通)
-   06. Page: Top
-   07. Page: Works(一覧)
-   08. Page: About
-   09. Page: Works Item(各制作物)
-   10. Component: Exhibition(制作実績スライダー)
+   02. Layout: Header
+   03. Layout: Footer
+   04. Components(縦書きタイトル / Moreボタン / プロフィール共通)
+   05. Page: Top
+   06. Page: Works(一覧)
+   07. Page: About
+   08. Page: Works Item(各制作物)
+   09. Component: Exhibition(制作実績スライダー)
    99. 削除候補(コメントアウト中)
 
    ブレークポイント(モバイルファースト)
    SP: ~767px / TB: 768px~ / PC: 1024px~
-   ※ 06(FV, Works スライダー)だけ 1025px~ が混在 → 99番の下にメモあり
+   ※ script.js(window.innerWidth >= 1024)と index.html の <picture> も同じ境目
    ========================================================================== */
 
 
@@ -113,43 +112,7 @@ h2 {
 
 
 /* ==========================================================================
-   02. Swiper 共通の上書き
-   Swiper本体のクラスをグローバルに書き換えている。
-   skill(.swiper2)や exhibition(.mySwiper3)は、このあと個別に打ち消している。
-   ========================================================================== */
-
-.swiper {
-    width: 100%;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: auto;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    object-fit: cover;
-    aspect-ratio: 4 / 5;
-}
-
-/* ページネーションの点 */
-.swiper-pagination-bullet {
-    background-color: var(--color-moegi);
-}
-
-.swiper-pagination-bullet-active {
-    background-color: var(--color-moegi-dark);
-}
-
-
-/* ==========================================================================
-   03. Layout: Header
+   02. Layout: Header
    SP: ハンバーガー + 右から出るカーテン / PC(1024px~): 右上に横並びナビ
    ========================================================================== */
 
@@ -455,7 +418,7 @@ header.is-open .header__list--sp::after {
 
 
 /* ==========================================================================
-   04. Layout: Footer
+   03. Layout: Footer
    ========================================================================== */
 
 .footer {
@@ -516,7 +479,7 @@ header.is-open .header__list--sp::after {
 
 
 /* ==========================================================================
-   05. Components
+   04. Components
    ========================================================================== */
 
 /* ----- 縦書きタイトル(Works / About / WorksItem 共通) ----- */
@@ -583,7 +546,7 @@ header.is-open .header__list--sp::after {
 }
 
 /* ----- プロフィール(Top / About 共通) -----
-   ※ PCのgrid指定はトップ用。Aboutページ側は 08 の .about__me 内で上書きしている */
+   ※ PCのgrid指定はトップ用。Aboutページ側は 07 の .about__me 内で上書きしている */
 
 .about__box {
     display: flex;
@@ -696,7 +659,7 @@ header.is-open .header__list--sp::after {
 
 
 /* ==========================================================================
-   06. Page: Top
+   05. Page: Top
    ========================================================================== */
 
 /* ----- FV ----- */
@@ -757,8 +720,8 @@ header.is-open .header__list--sp::after {
     }
 }
 
-/* PC(1025px~) */
-@media screen and (min-width: 1025px) {
+/* PC */
+@media screen and (min-width: 1024px) {
     .fv {
         background-image: url(../img/fv__background--pc.jpg);
         height: 110vh;
@@ -789,6 +752,37 @@ header.is-open .header__list--sp::after {
     align-items: center;
     gap: 15px;
     align-self: stretch;
+}
+
+/* ----- Swiper(このスライダー専用の見た目) ----- */
+
+.top__works .swiper {
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.top__works .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+.top__works .swiper-slide img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 5;
+}
+
+/* ページネーションの点 */
+.top__works .swiper-pagination-bullet {
+    background-color: var(--color-moegi);
+}
+
+.top__works .swiper-pagination-bullet-active {
+    background-color: var(--color-moegi-dark);
 }
 
 /* スライド全体を詳細ページへのリンクにする */
@@ -842,8 +836,8 @@ header.is-open .header__list--sp::after {
     }
 }
 
-/* PC(1025px~): 画像の背景をぼかして敷く */
-@media screen and (min-width: 1025px) {
+/* PC: 画像の背景をぼかして敷く */
+@media screen and (min-width: 1024px) {
     .top__works .mySwiper {
         max-width: none;
     }
@@ -916,7 +910,7 @@ header.is-open .header__list--sp::after {
 
 
 /* ==========================================================================
-   07. Page: Works(一覧)
+   06. Page: Works(一覧)
    ========================================================================== */
 
 .works {
@@ -1054,7 +1048,7 @@ header.is-open .header__list--sp::after {
 
 
 /* ==========================================================================
-   08. Page: About
+   07. Page: About
    ========================================================================== */
 
 .about {
@@ -1174,7 +1168,7 @@ header.is-open .header__list--sp::after {
     }
 }
 
-/* 画像は切り取らず、全体を見せる(.swiper-slide img の object-fit: cover を打ち消す) */
+/* 画像は切り取らず、全体を見せる */
 .skill__card .skill__img {
     width: 100%;
     max-width: 240px;
@@ -1276,11 +1270,10 @@ header.is-open .header__list--sp::after {
 }
 
 /* ----- 保有資格 ----- */
-/* ※ padding は .about section(50px 0)に上書きされていて、100px 35px は効いていない */
+/* padding は .about section(50px 0)が効く */
 
 .certificate {
     display: flex;
-    padding: 100px 35px;
     flex-direction: column;
     align-items: center;
     gap: 1.5em;
@@ -1300,7 +1293,7 @@ header.is-open .header__list--sp::after {
 }
 
 /* ----- .about__me(わたしのこと) PC -----
-   05 のプロフィール共通(トップ用のgrid指定)が aboutページにも効いてしまうため、
+   04 のプロフィール共通(トップ用のgrid指定)が aboutページにも効いてしまうため、
    .about__me の中だけで上書きする */
 @media screen and (min-width: 1024px) {
 
@@ -1391,7 +1384,7 @@ header.is-open .header__list--sp::after {
 
 
 /* ==========================================================================
-   09. Page: Works Item(各制作物)
+   08. Page: Works Item(各制作物)
    ========================================================================== */
 
 .worksItem {
@@ -1588,8 +1581,7 @@ header.is-open .header__list--sp::after {
 
 
 /* ==========================================================================
-   10. Component: Exhibition(制作実績スライダー)
-   ※ 02 の .swiper / .swiper-slide img を打ち消すため、必ずそれらより後ろに置く
+   09. Component: Exhibition(制作実績スライダー)
    ========================================================================== */
 
 .exhibition {
@@ -1661,9 +1653,8 @@ header.is-open .header__list--sp::after {
     align-items: center;
     gap: 5px;
 
-    /* .swiper-slide img(aspect-ratio: 4/5 など)を打ち消す */
+    /* 画像をドラッグで掴めないようにする */
     img {
-        aspect-ratio: auto;
         -webkit-user-drag: none;
         user-select: none;
     }
@@ -1685,9 +1676,7 @@ header.is-open .header__list--sp::after {
     outline-offset: 5px;
 }
 
-/* ⚠ 要確認: .exhibition__card.exhibition__cardImage は両方のクラスを持つ要素がなく、
-   たぶん .exhibition__cardImage のタイポ。直すと画像が180x180になるので見た目が変わる(ステップ2で判断) */
-.exhibition__card.exhibition__cardImage,
+.exhibition__cardImage,
 .exhibition__cardCrop {
     width: 180px;
     height: 180px;

@@ -1,0 +1,466 @@
+/* ==========================================================================
+   works-item.css - Works 詳細ページ(works-item.html)専用(Exhibition を含む)
+
+   読み込み順: destyle.css → common.css → works-item.css
+   ========================================================================== */
+
+
+/* ==========================================================================
+   Page: Works Item(各制作物)
+   ========================================================================== */
+
+.worksItem {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.worksItem__container {
+    display: flex;
+    flex-direction: column;
+    width: 86%;
+    gap: 30px;
+    flex-shrink: 0;
+}
+
+/* 左側(FV画像)。PCでは画面に固定 */
+.worksItem__fixLeft {
+    padding-top: 130px;
+
+    img {
+        border-radius: 7px;
+    }
+}
+
+/* 右側(説明文と挿絵) */
+.worksItem__fixRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    width: 100%;
+}
+
+/* ----- worksFv(タイトル・カテゴリ・説明文) ----- */
+
+.worksFv__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    padding: 0 10px;
+}
+
+.worksFv__name {
+    color: var(--color-text);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 2.8px;
+}
+
+.worksFv__category {
+    font-weight: 300;
+    letter-spacing: 1.5px;
+
+    ul {
+        display: flex;
+        gap: 10px;
+        margin: 0px 5px;
+    }
+
+    li a {
+        color: var(--color-text-b);
+        font-family: var(--font-en);
+        font-size: 12px;
+    }
+}
+
+.worksFv__text {
+    margin-top: 1em;
+    font-size: 14px;
+    line-height: 23px;
+    letter-spacing: 1.5px;
+    font-weight: normal;
+}
+
+/* ----- モックアップ・説明写真 ----- */
+
+.worksImg {
+    width: 100%;
+}
+
+.worksImg__img {
+    width: 100%;
+}
+
+/* ----- Project(詳細情報) ----- */
+
+.project {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 区切り線つきの1項目 */
+.project__container {
+    padding: 24px 10px;
+    border-bottom: 1px solid var(--color-border-light);
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project__container:last-child {
+    border-bottom: none;
+}
+
+/* 見出し */
+.project__title {
+    color: var(--color-text-b);
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 1.5px;
+}
+
+/* 本文テキスト */
+.project__text {
+    width: 100%;
+    font-size: 14px;
+    line-height: 23px;
+    letter-spacing: 1.5px;
+    font-weight: normal;
+    /* 長いURLを途中で折り返す */
+    overflow-wrap: anywhere;
+
+    a {
+        width: 100%;
+    }
+}
+
+.project__text dl {
+    display: flex;
+    justify-content: space-between;
+
+    dt {
+        font-weight: normal;
+    }
+}
+
+/* 外部ページリンクのアイコン */
+.project__text a::after {
+    content: url(../img/icon__openLink.svg);
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+/* ----- PC: 左はsticky、右はページと一緒にスクロール ----- */
+@media screen and (min-width: 1024px) {
+    .worksFv__title {
+        margin-top: 2em;
+    }
+
+    .worksFv__text {
+        margin-top: 0.5em;
+    }
+
+    .worksItem__container {
+        flex-direction: row;
+        /* 左を引き伸ばさない(stickyが動く余地を残す) */
+        align-items: flex-start;
+    }
+
+    .worksItem__fixLeft {
+        position: sticky;
+        top: 0;
+        flex: 1;
+        height: 100vh;
+        padding-top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: auto;
+            height: 95vh;
+            object-fit: cover;
+        }
+    }
+
+    .worksItem__fixRight {
+        flex: 1;
+        /* 左画像の上下の余白(100vh - 95vh)の半分 */
+        padding: 2.5vh 0;
+        gap: 10px;
+    }
+}
+
+
+/* ==========================================================================
+   Component: Exhibition(制作実績スライダー)
+   ========================================================================== */
+
+.exhibition {
+    display: flex;
+    width: 86%;
+    margin: 0 auto;
+    padding: 32px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.exhibition__header {
+    width: 100%;
+    padding: 5px;
+}
+
+.exhibition__title {
+    font-family: var(--font-en);
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* ----- スライダー本体 ----- */
+
+.exhibition__showcase {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    padding: 0;
+    flex: none;
+    overflow: hidden;
+    background-color: var(--color-white);
+    outline: none;
+    cursor: grab;
+}
+
+.exhibition__showcase:active {
+    cursor: grabbing;
+}
+
+.exhibition__showcase:focus-visible {
+    outline: 1px solid var(--color-text);
+    outline-offset: 5px;
+}
+
+/* Swiperのwrapper。カード間の間隔はJS(spaceBetween)で指定 */
+.exhibition__track {
+    position: absolute;
+    top: 22px;
+    left: 21px;
+    z-index: 1;
+    display: flex;
+    height: 215px;
+    align-items: flex-start;
+    /* 一定速度で流すため、SwiperのCSS(ease)を上書き */
+    transition-timing-function: linear;
+}
+
+/* ----- カード ----- */
+
+.exhibition__card {
+    display: flex;
+    width: 180px;
+    height: 215px;
+    flex: 0 0 180px;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    /* 画像をドラッグで掴めないようにする */
+    img {
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+}
+
+.exhibition__cardLink {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    -webkit-user-drag: none;
+}
+
+.exhibition__cardLink:focus-visible {
+    outline: 1px solid var(--color-text);
+    outline-offset: 5px;
+}
+
+.exhibition__cardImage,
+.exhibition__cardCrop {
+    width: 180px;
+    height: 180px;
+    flex: 0 0 180px;
+}
+
+.exhibition__cardImage {
+    object-fit: cover;
+}
+
+.exhibition__cardImage--bordered {
+    border: 1px solid var(--color-border-dark);
+}
+
+/* 画像の一部だけを見せる(ロゴ・アイコン) */
+.exhibition__cardCrop {
+    position: relative;
+    overflow: hidden;
+
+    img {
+        position: absolute;
+        top: 0;
+        max-width: none;
+        height: 100%;
+        object-fit: fill;
+    }
+}
+
+.exhibition__cardCrop--logo img {
+    left: -20%;
+    width: 135%;
+}
+
+.exhibition__cardCrop--icons img {
+    left: -20%;
+    width: 225%;
+}
+
+.exhibition__cardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    white-space: nowrap;
+}
+
+.exhibition__cardTitle {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.exhibition__cardCategory {
+    color: var(--color-text-g);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* ----- 枠(CSS製。幅が変わっても斜めの角度が一定) ----- */
+
+.exhibition__frame {
+    position: absolute;
+    /* 左右に2pxはみ出させ、showcaseのoverflowで切る(小数点位置でも縁が透けない) */
+    inset: 0 -2px;
+    z-index: 2;
+    pointer-events: none;
+    /* 見える幅は 12 - 2 = 10px */
+    --side: 12px;
+    --top: 10px;
+    --bottom: 16px;
+
+    span {
+        position: absolute;
+    }
+
+    /* 4つのパーツの継ぎ目からスライドが透けないよう、下に枠全体を覆う額縁を敷く */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: var(--color-gray);
+        clip-path: polygon(evenodd,
+                0 0, 100% 0, 100% 100%, 0 100%, 0 0,
+                var(--side) var(--top),
+                var(--side) calc(100% - var(--bottom)),
+                calc(100% - var(--side)) calc(100% - var(--bottom)),
+                calc(100% - var(--side)) var(--top),
+                var(--side) var(--top));
+    }
+}
+
+.exhibition__frameTop,
+.exhibition__frameBottom {
+    left: 0;
+    width: 100%;
+    background-color: var(--color-gray);
+}
+
+.exhibition__frameTop {
+    top: 0;
+    height: var(--top);
+    clip-path: polygon(0 0, 100% 0, calc(100% - var(--side)) 100%, var(--side) 100%);
+}
+
+.exhibition__frameBottom {
+    bottom: 0;
+    height: var(--bottom);
+    clip-path: polygon(var(--side) 0, calc(100% - var(--side)) 0, 100% 100%, 0 100%);
+}
+
+.exhibition__frameLeft,
+.exhibition__frameRight {
+    top: 0;
+    width: var(--side);
+    height: 100%;
+    background-color: var(--color-frame-side);
+}
+
+.exhibition__frameLeft {
+    left: 0;
+    clip-path: polygon(0 0, 100% var(--top), 100% calc(100% - var(--bottom)), 0 100%);
+}
+
+.exhibition__frameRight {
+    right: 0;
+    clip-path: polygon(100% 0, 0 var(--top), 0 calc(100% - var(--bottom)), 100% 100%);
+}
+
+/* ----- 植木鉢 ----- */
+
+.exhibition__plant {
+    position: absolute;
+    top: 194px;
+    left: 21px;
+    z-index: 3;
+    display: block;
+    width: 40px;
+    height: 60px;
+    pointer-events: none;
+}
+
+/* ----- More(.button--more はトップページと共通) ----- */
+
+.exhibition__more {
+    display: flex;
+    width: 100%;
+    padding-right: 5px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* TB(枠だけ広げ、カードは同じサイズ) */
+@media screen and (min-width: 768px) {
+    .exhibition {
+        margin-top: 50px;
+    }
+}
+
+/* PC */
+@media screen and (min-width: 1024px) {
+    .exhibition {
+        width: 86%;
+    }
+}

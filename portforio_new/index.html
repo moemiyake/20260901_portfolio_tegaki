@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="css/destyle.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/top.css">
 
     <!-- Google Fonts -->
     <link
@@ -70,8 +71,8 @@
                 <h1 class="fv__name" style="font-family: 'Noto Serif JP', serif;">MOE MIYAKE</h1>
             </div>
             <picture class="fv__house">
-                <!-- スマホ・タブレット用（画面幅768px以下の場合） -->
-                <source media="(max-width: 1024px)" srcset="img/fv__house--sp.svg" type="image/svg+xml">
+                <!-- スマホ・タブレット用（画面幅1023px以下の場合。PCは1024px~でCSS・JSと同じ境目） -->
+                <source media="(max-width: 1023px)" srcset="img/fv__house--sp.svg" type="image/svg+xml">
                 <!-- PC用（デフォルト・上記以外） -->
                 <img src="img/fv__house--pc.svg" alt="家のイラストと冒頭挨拶「ご覧くださりありがとうございます。「人の手で作る温かさ」を大切にしながら、丁寧に制作します。」"
                     loading="lazy">
