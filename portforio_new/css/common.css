@@ -67,13 +67,9 @@ html {
     line-height: 1.5;
 }
 
-html,
+/* 中身が短いページでも画面いっぱいにする(フッターを一番下に置くため。.footer の margin-top: auto と対) */
 body {
-    position: relative;
-    height: 100%;
-}
-
-body {
+    min-height: 100vh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -422,7 +418,9 @@ header.is-open .header__list--sp::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 60px auto 30px;
+    /* margin-top: auto で、中身が短いページでも画面の一番下に置く。上の余白60pxは padding で確保 */
+    margin: auto auto 30px;
+    padding-top: 60px;
     gap: 40px;
 
     font-family: var(--font-en);
@@ -496,10 +494,10 @@ header.is-open span:nth-child(2) {
 
 /* ----- 縦書きタイトル(Works / About / WorksItem 共通) ----- */
 
+/* 中身は position: fixed のものだけなので、高さは0 */
 .works__fix,
 .about__fix {
     width: 100%;
-    height: 100vh;
 }
 
 .works h2,
