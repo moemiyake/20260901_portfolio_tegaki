@@ -55,6 +55,14 @@
     align-items: center;
 }
 
+/* TB: 写真をSPと同じバランス(文章の幅の60%)にする。PC(1024px~)は、このファイル下の .about__me の上書きが優先 */
+@media screen and (min-width: 768px) {
+    .about__me .about__img img {
+        width: 60%;
+        max-width: 460px;
+    }
+}
+
 /* ----- できること(swiper2 / skill) ----- */
 
 /* SP: 画面幅の80%。大きくなりすぎないよう上限をつける */

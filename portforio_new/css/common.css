@@ -504,6 +504,8 @@ header.is-open span:nth-child(2) {
 .about h2,
 .worksItem h2 {
     position: fixed;
+    z-index: 5;
+    /* Swiperのwrapper(z-index: 1)・Exhibitionの枠(1〜3)より前、SPメニューのカーテン(7)より後ろ */
     top: 20px;
     left: 20px;
     font-family: var(--font-en);
