@@ -1,7 +1,7 @@
 /* ==========================================================================
-   common.css - 全ページ共通(変数 / 全体の初期設定 / Header / Footer / 共通部品)
+   style.css - 全ページ共通(変数 / 全体の初期設定 / Header / Footer / 共通部品)
 
-   読み込み順: destyle.css → common.css → (ページ別CSS)
+   読み込み順: destyle.css → style.css → (ページ別CSS)
 
    目次
    1. Tokens(変数)
@@ -122,40 +122,45 @@ h2 {
     right: 20px;
 }
 
-/* 2本線 */
-header span {
-    &::before {
-        width: 100%;
-        height: 1px;
-        content: '';
-        background-color: var(--color-text);
-        position: absolute;
-        top: 7px;
-        transition: all 0.6s ease-in-out;
-    }
+/* 2本線と、開いたときの閉じるアイコン */
+.header__hamburger span::before,
+.header__hamburger span::after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: var(--color-text);
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+}
 
-    &::after {
-        width: 100%;
-        height: 1px;
-        content: '';
-        background-color: var(--color-text);
-        position: absolute;
-        bottom: 7px;
-        transition: all 0.7s ease-in-out;
-    }
+.header__hamburger span::before {
+    top: 7px;
+}
+
+.header__hamburger span::after {
+    bottom: 7px;
+}
+
+.header__hamburger::after {
+    position: absolute;
+    inset: 0;
+    width: 30px;
+    height: 28px;
+    content: '';
+    background: url("../img/menu__close.svg") center / contain no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 /* 開いたらバツになる */
-header.is-open span {
-    &::before {
-        transform: translateY(7px) rotate(135deg);
-        background-color: var(--color-white);
-    }
+header.is-open .header__hamburger span::before,
+header.is-open .header__hamburger span::after {
+    opacity: 0;
+}
 
-    &::after {
-        transform: translateY(-7px) rotate(225deg);
-        background-color: var(--color-white);
-    }
+header.is-open .header__hamburger::after {
+    opacity: 1;
 }
 
 /* ----- メニュー共通 ----- */
@@ -170,79 +175,112 @@ header.is-open span {
 /* ----- SP: カーテン ----- */
 .header__list--sp {
     position: fixed;
-    top: -5vh;
-    right: -10px;
+    top: 0;
+    right: 0;
     width: 80%;
-    height: 110vh;
+    height: 100vh;
+    height: 100svh;
     z-index: 7;
+    isolation: isolate;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    background-color: rgba(var(--color-skyblue-rgb), 0.95);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-
+    /* background-color: rgba(var(--color-skyblue-rgb), 0.95); */
     transform: translateX(110%);
     transition: transform 0.6s ease-in-out;
 }
 
-/* カーテンの左側の帯 */
+/* カーテン本体だけを揺らし、ナビ文字は親の揺れに巻き込まない */
+.header__list--sp::before {
+    content: "";
+    position: absolute;
+    inset: -20px -20px -20px 0;
+    background-color: rgba(var(--color-skyblue-rgb), 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 0;
+}
+
+/* カーテン端の揺れるパーツ */
 .header__list--sp::after {
     content: "";
     position: absolute;
-    top: 0;
-    right: -5px;
-    width: 128px;
-    height: 110vh;
-    background-color: rgba(var(--color-blue-rgb), 0.3);
-    backdrop-filter: blur(5px);
-    filter: blur(1.5px);
-    z-index: -1;
+    top: -12px;
+    right: -10px;
+    width: 135px;
+    height: calc(100% + 12px);
+    background: url("../img/menu__curtain.svg") center / 100% 100% no-repeat;
+    z-index: 1;
 }
 
 /* 開いた状態 + アニメーション */
 header.is-open .header__list--sp {
     transform: translateX(0);
+}
+
+header.is-open .header__list--sp::before {
     animation:
-        header__list1--keyframes1 3.5s linear,
-        header__list1--keyframes2 3.5s linear;
+        header__fade-in 0.2s ease-out both,
+        header__list1--keyframes2 3.5s ease-in-out;
 }
 
 header.is-open .header__list--sp::after {
     animation:
-        header__list2--keyframes1 3.5s linear,
-        header__list2--keyframes2 3.5s linear,
-        header__list2--keyframes3 3.5s linear;
+        header__fade-in 0.3s ease-out both,
+        header__list2--keyframes2 4s linear,
+        header__list2--keyframes3 4s linear;
 }
 
 .header__list--sp ul {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    gap: 1.5rem;
+    gap: 40px;
     font-family: var(--font-en);
     font-weight: 300;
     letter-spacing: 3px;
+    line-height: 1;
+    transform: translateY(-30px);
+}
 
-    li {
-        color: var(--color-white);
-    }
+.header__list--sp ul li a {
+    color: var(--color-white);
+    font-size: 32px;
+    font-weight: 300;
+}
+
+header.is-open .header__list--sp li:nth-child(1) {
+    animation: header__menu-item 3.5s linear both;
+}
+
+header.is-open .header__list--sp li:nth-child(2) {
+    animation: header__menu-item 3.5s linear 0.34s both;
+}
+
+header.is-open .header__list--sp li:nth-child(3) {
+    animation: header__menu-item 3.5s linear 0.67s both;
 }
 
 .header__name {
     position: absolute;
-    bottom: 10%;
+    bottom: 4.5%;
     left: 50%;
+    z-index: 2;
     transform: translateX(-50%);
-    font-size: 1.5rem;
+    font-size: 32px;
     font-family: var(--font-en);
     font-weight: 300;
     color: var(--color-white);
+    white-space: nowrap;
+}
+
+header.is-open .header__name {
+    animation: header__fade-in 1s cubic-bezier(0.22, 1, 0.36, 1) 1.91s both;
 }
 
 /* ----- PC ----- */
@@ -257,6 +295,7 @@ header.is-open .header__list--sp::after {
         display: flex;
 
         ul {
+            left: 0;
             position: fixed;
             z-index: 10;
             width: 100%;
@@ -274,17 +313,11 @@ header.is-open .header__list--sp::after {
     }
 }
 
-/* ----- カーテン アニメーション(keyframes) ----- */
+/* ----- カーテンとメニューのアニメーション(keyframes) ----- */
 
-/* カーテン本体: 透明度 */
-@keyframes header__list1--keyframes1 {
+@keyframes header__fade-in {
     0% {
-        animation-timing-function: ease-out;
         opacity: 0;
-    }
-
-    5.714% {
-        opacity: 1;
     }
 
     100% {
@@ -304,38 +337,18 @@ header.is-open .header__list--sp::after {
         transform: translate(-10px, 5px);
     }
 
-    44.286% {
+    43% {
         animation-timing-function: ease;
-        transform: translate(6px, 2px);
+        transform: translate(20px, 2px);
     }
 
-    60% {
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translate(-2px, -0.8px);
-    }
-
-    75.714% {
-        transform: translate(0px, 0px);
+    70% {
+        animation-timing-function: ease-in-out;
+        transform: translate(-5px, 0px);
     }
 
     100% {
         transform: translate(0px, 0px);
-    }
-}
-
-/* 左の帯(::after): 透明度 */
-@keyframes header__list2--keyframes1 {
-    0% {
-        animation-timing-function: ease-out;
-        opacity: 0;
-    }
-
-    8.571% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 1;
     }
 }
 
@@ -357,20 +370,20 @@ header.is-open .header__list--sp::after {
 
     32.857% {
         animation-timing-function: cubic-bezier(0.34, 0.8, 0.64, 1);
-        width: 136px;
+        width: 150px;
     }
 
     52.857% {
         animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        width: 124px;
+        width: 120px;
     }
 
-    74.286% {
-        width: 128px;
+    80% {
+        width: 140px;
     }
 
     100% {
-        width: 128px;
+        width: 135px;
     }
 }
 
@@ -406,6 +419,58 @@ header.is-open .header__list--sp::after {
 
     100% {
         translate: 0px 0px;
+    }
+}
+
+@keyframes header__menu-item {
+    0% {
+        opacity: 0;
+        translate: 15px 0;
+    }
+
+    9.714% {
+        animation-timing-function: ease-in-out;
+        translate: 15px 0;
+    }
+
+    25.714% {
+        animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        opacity: 0;
+    }
+
+    54% {
+        opacity: 1;
+        translate: 0 0;
+    }
+
+    100% {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+header.is-open .header__hamburger::after {
+    animation: header__fade-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.93s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header__list--sp {
+        transition: none;
+    }
+
+    header.is-open .header__list--sp {
+        transform: translateX(0);
+        animation: none;
+    }
+
+    header.is-open .header__list--sp::before,
+    header.is-open .header__list--sp::after,
+    header.is-open .header__list--sp li,
+    header.is-open .header__name,
+    header.is-open .header__hamburger::after {
+        animation: none;
+        opacity: 1;
+        translate: 0 0;
     }
 }
 

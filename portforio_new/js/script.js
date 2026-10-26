@@ -44,13 +44,35 @@ var swiper = new Swiper('.mySwiper', {
 
 
 
-// ハンバーガーボタン(.header__hamburger)を押すと、headerに.is-openがつく。toggleタイプ。バニラJS
+// ハンバーガーメニュー
 const header = document.querySelector('header');
 const hamburger = document.querySelector('.header__hamburger');
-hamburger.addEventListener('click', () => {
-  const isOpen = header.classList.toggle('is-open');
-  hamburger.setAttribute('aria-expanded', isOpen); // スクリーンリーダー用(開閉状態を伝える)
-});
+const mobileNavigation = document.querySelector('.header__list--sp');
+
+if (header && hamburger && mobileNavigation) {
+  const setMenuOpen = (isOpen) => {
+    header.classList.toggle('is-open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+    mobileNavigation.setAttribute('aria-hidden', String(!isOpen));
+    mobileNavigation.inert = !isOpen;
+  };
+
+  hamburger.addEventListener('click', () => {
+    setMenuOpen(hamburger.getAttribute('aria-expanded') !== 'true');
+  });
+
+  mobileNavigation.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenuOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && hamburger.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false);
+      hamburger.focus();
+    }
+  });
+}
 
 // 「動きを減らす」設定の人にはアニメーションを止める
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
