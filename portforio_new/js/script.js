@@ -88,6 +88,9 @@ var swiper2 = new Swiper('.mySwiper2', {
     slideShadows: false, // 黒い影を消して、カードの縁取りで重なりを見せる
   },
   keyboard: { enabled: true }, // 矢印キーでもめくれる
+  pagination: {
+    el: '.swiper2-pagination',
+  },
 });
 
 
