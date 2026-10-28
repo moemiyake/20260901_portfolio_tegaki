@@ -72,18 +72,18 @@
                 <h1 class="fv__name fadein" style="font-family: 'Noto Serif JP', serif;">MOE MIYAKE</h1>
             </div>
             
-            <!-- ★ここに屋根のSVGを入れたい -->
-            <!-- 屋根 -->
-            <svg class="fv__roof" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"
-                aria-hidden="true" focusable="false">
-                <polygon points="0,10 50,0 100,10" fill="#fff" />
-            </svg>
-
-            <!-- 煙突 -->
-            <svg class="fv__chimney" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" preserveAspectRatio="none"
-                aria-hidden="true" focusable="false">
-                <rect width="10" height="10" fill="#fff" />
-            </svg>
+            <div class="fv__illust">
+                <!-- 屋根 -->
+                <svg class="fv__roof" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"
+                    aria-hidden="true" focusable="false">
+                    <polygon points="0,10 50,0 100,10" fill="#fff" />
+                </svg>
+                <!-- 煙突 -->
+                <svg class="fv__chimney" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" preserveAspectRatio="none"
+                    aria-hidden="true" focusable="false">
+                    <rect width="10" height="10" fill="#fff" />
+                </svg>
+            </div>
 
             <!-- 吹き出し（煙突の上） -->
             <img class="fv__fog1" src="img/fv__fog_1.svg" alt="" aria-hidden="true">
@@ -91,8 +91,8 @@
             
             <!-- 中央の吹き出し＋メッセージ -->
             <div class="fv__message">
-                <img src="img/fv__fog_3.svg" alt="" aria-hidden="true">
-                <p class="fv__message__text">
+                <img class="fv__message_img" src="img/fv__fog_3.svg" alt="" aria-hidden="true">
+                <p class="fv__message_text">
                     ご覧くださり<br>
                     ありがとうございます。<br>
                     “人の手で作る温かさ”を<br>

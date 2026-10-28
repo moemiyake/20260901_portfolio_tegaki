@@ -283,3 +283,51 @@ const fadeElements4 = document.querySelectorAll('.fadein_4');
 fadeElements4.forEach(element4 => {
   fadeObserber4.observe(element4);
 });
+
+
+// --- FVの吹き出し(煙)を順番に出す ---
+// 煙突に近い順に、fog1 → fog2 → メッセージ(吹き出し+文章)
+const fogSteps = [
+  ['.fv__fog1'],
+  ['.fv__fog2'],
+  ['.fv__message_img', '.fv__message_text'],
+];
+
+const showFogSequence = () => {
+  const STEP_DELAY = 700; // 次の吹き出しが出るまでの間隔(ms)
+  const START_DELAY = 500; // 読み込み後、最初が出るまでの待ち(ms)
+
+  fogSteps.forEach((selectors, index) => {
+    selectors.forEach((selector) => {
+      const el = document.querySelector(selector);
+      if (!el) return; // 他のページにはないので、何もしない
+
+      // 「動きを減らす」設定の人には、アニメーションなしで表示
+      if (prefersReducedMotion) {
+        el.style.opacity = 1;
+        return;
+      }
+
+      el.animate(
+        {
+          opacity: [0, 1],
+          filter: ['blur(.5rem)', 'blur(0)'],
+          translate: ['0 2rem', 0], // 少し下から上がってくる
+        },
+        {
+          duration: 1500,
+          delay: START_DELAY + STEP_DELAY * index,
+          easing: 'ease',
+          fill: 'both', // 待ち時間のあいだも最初の状態(透明)を保つ
+        }
+      );
+    });
+  });
+};
+
+// 画像(SVG)の読み込みが終わってから始める
+if (document.readyState === 'complete') {
+  showFogSequence();
+} else {
+  window.addEventListener('load', showFogSequence);
+}

@@ -68,6 +68,14 @@
 
 
 /* ----- 吹き出し(fog) ----- */
+/* 吹き出しは最初は透明。JSで順番に表示する */
+.fv__fog1,
+.fv__fog2,
+.fv__message_img,
+.fv__message_text {
+    opacity: 0;
+}
+
 .fv {
     --fog-w: 75vw; /* fog_3の幅。fog_1・fog_2はこの値から比率で決まる */
     --fog3-h: calc(var(--fog-w) * 216 / 268); /* fog_3の高さ(SVGの縦横比 268×216) */
@@ -118,14 +126,14 @@
     width: var(--fog-w);
 }
 
-.fv__message img {
+.fv__message_img {
     display: block;
     width: 100%;
     height: auto;
 }
 
 /* 吹き出しの中の文章 */
-.fv__message__text {
+.fv__message_text {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -364,3 +372,4 @@
     align-items: center;
 }
 */
+
