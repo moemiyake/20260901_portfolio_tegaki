@@ -346,3 +346,17 @@
         letter-spacing: 1px;
     }
 }
+
+/* ページネーションの点 */
+.skill .swiper-pagination-bullet {
+    background-color: var(--color-moegi);
+}
+
+.skill .swiper-pagination-bullet-active {
+    background-color: var(--color-moegi-dark);
+}
+
+.swiper2-pagination {
+    text-align: center;
+    margin-top: 5px;
+}

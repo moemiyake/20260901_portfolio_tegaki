@@ -39,7 +39,8 @@
     <header>
         <!-- SP -->
         <!-- ハンバーガー -->
-        <button class="header__hamburger header__hamburger--sp" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="sp-navigation">
+        <button class="header__hamburger header__hamburger--sp" type="button" aria-label="メニューを開く" aria-expanded="false"
+            aria-controls="sp-navigation">
             <span></span>
             <!-- <span></span> -->
         </button>
@@ -70,15 +71,45 @@
                 <!-- SVGにする -->
                 <h1 class="fv__name" style="font-family: 'Noto Serif JP', serif;">MOE MIYAKE</h1>
             </div>
-            <picture class="fv__house">
-                <!-- スマホ・タブレット用（画面幅1023px以下の場合。PCは1024px~でCSS・JSと同じ境目） -->
+            <!-- <picture class="fv__house">
+                スマホ・タブレット用（画面幅1023px以下）
                 <source media="(max-width: 1023px)" srcset="img/fv__house--sp.svg" type="image/svg+xml">
-                <!-- PC用（デフォルト・上記以外） -->
+                PC用（デフォルト・上記以外）
                 <img src="img/fv__house--pc.svg" alt="家のイラストと冒頭挨拶「ご覧くださりありがとうございます。「人の手で作る温かさ」を大切にしながら、丁寧に制作します。」"
                     loading="lazy">
-            </picture>
+            </picture> -->
+            
+            <!-- ★ここに屋根のSVGを入れたい -->
+            <!-- 屋根 -->
+            <svg class="fv__roof" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"
+                aria-hidden="true" focusable="false">
+                <polygon points="0,10 50,0 100,10" fill="#fff" />
+            </svg>
 
+            <!-- 煙突 -->
+            <svg class="fv__chimney" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" preserveAspectRatio="none"
+                aria-hidden="true" focusable="false">
+                <rect width="10" height="10" fill="#fff" />
+            </svg>
+
+            <!-- 吹き出し（煙突の上） -->
+            <img class="fv__fog1" src="img/fv__fog_1.svg" alt="" aria-hidden="true">
+            <img class="fv__fog2" src="img/fv__fog_2.svg" alt="" aria-hidden="true">
+            
+            <!-- 中央の吹き出し＋メッセージ -->
+            <div class="fv__message">
+                <img src="img/fv__fog_3.svg" alt="" aria-hidden="true">
+                <p class="fv__message__text">
+                    ご覧くださり<br>
+                    ありがとうございます。<br>
+                    “人の手で作る温かさ”を<br>
+                    大切にしながら<br>
+                    丁寧に制作します。
+                </p>
+            </div>
         </div>
+
+
     </section>
 
     <!-- Works -->

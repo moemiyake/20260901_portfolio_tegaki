@@ -21,12 +21,14 @@
     background-attachment: fixed;
 }
 
-/* 名前の白い帯(通常の並び。高さは padding で決める。家は、この帯を除いた残りの高さに収まる) */
+/* 名前の白い帯 */
 .fv__nameBox {
-    flex-shrink: 0;
-    padding: 20vw 10vw 5vw 10vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5vh;
+    padding-top: 7vh;
     width: 100%;
-    text-align: left;
     background-color: var(--color-white);
 }
 
@@ -42,28 +44,156 @@
     justify-content: center;
 }
 
-.fv__house {
+/* .fv__house {
     flex: 1 1 0;
     min-height: 0;
-    /* 中の画像が大きくても、この枠より高くならないようにする */
+    中の画像が大きくても、この枠より高くならないようにする
     width: 100%;
     display: flex;
     object-fit: cover;
     margin-bottom: -1px;
-}
+} */
+
+/* .fv__house {
+    屋根の計算用(SP・TB用SVGの値。PCは下で上書き)
+    家の画像の 幅 ÷ 高さ(375 ÷ 446)
+    --house-ratio: 0.84;
+    屋根の高さ ÷ 画像の幅(80 ÷ 375)
+    --roof-ratio: 0.21;
+    position: relative;
+    isolation: isolate;
+    中で cqw / cqh(この枠の幅・高さ)を使うため
+    container-type: size;
+    flex: 1 1 0;
+    中の画像が大きくても、この枠より高くならないようにする
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    object-fit: cover;
+    margin-bottom: -1px;
+} */
+
+/* 屋根 */
+/* .fv__house::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(min(100cqw, 100cqh * var(--house-ratio)) * var(--roof-ratio));
+    background-color: var(--color-white);
+    clip-path: polygon(0 100%, 50% 0, 100% 100%);
+} */
+
+
 
 /* 画像は幅・高さの両方に収め、下に付ける(比率は変えない) */
-.fv__house img {
+/* .fv__house img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     object-position: center bottom;
+} */
+
+/* ----- 屋根と煙突 -----*/
+.fv__roof {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 15vh;
+    /* 下に余白が出るのを防ぐ */
+    display: block;
 }
+
+.fv__chimney {
+    position: absolute;
+    left: 25%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 10vh;
+    height: 15vh;
+    display: block;
+}
+
+/* ----- 吹き出し(fog) ----- */
+.fv {
+    /* fog_3の幅。fog_1・fog_2はこの値から比率で決まる */
+    --fog-w: 75vw;
+
+    /* 煙突の値（.fv__chimney と同じ値にしておく） */
+    --chimney-x: 25%;
+    /* left */
+    --chimney-w: 10vh;
+    /* width */
+    --chimney-h: 15vh;
+    /* height */
+}
+
+/* fog_1: 煙突の上 */
+.fv__fog1 {
+    position: absolute;
+    transform: translateX(-50%);
+    left: calc(var(--chimney-x) + var(--chimney-w) * 0.25);
+    bottom: calc(var(--chimney-h) + 3vh);
+    /* 煙突の高さ + すき間 */
+    width: calc(var(--fog-w) * 33 / 268);
+    height: auto;
+    pointer-events: none;
+}
+
+/* fog_2: fog_1とfog_3の間 */
+.fv__fog2 {
+    position: absolute;
+    transform: translateX(-50%);
+    left: calc(var(--chimney-x) + var(--chimney-w) * 1.1);
+    bottom: calc(var(--chimney-h) + 3vh + var(--fog-w) * 26 / 268 + 2vh);
+    /* fog_1の上 */
+    width: calc(var(--fog-w) * 62 / 268);
+    height: auto;
+    pointer-events: none;
+}
+
+/* fog_3: FVの中央 */
+.fv__message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--fog-w);
+}
+
+.fv__message img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* 吹き出しの中の文章 */
+.fv__message__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    color: #3C3C3C;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    font-size: calc(var(--fog-w) * 0.049);
+    /* 吹き出しの幅に合わせて文字も拡大縮小 */
+    line-height: 2.1;
+    letter-spacing: 0.1em;
+}
+
 
 /* TB */
 @media screen and (min-width: 768px) {
     .fv {
         height: 100vh;
+        --fog-w: 55vw;
+        --chimney-w: 14vh;
     }
 
     .fv__box {
@@ -73,23 +203,56 @@
     .fv__nameBox {
         padding: 50px;
     }
+
+    /* ----- 屋根と煙突 -----*/
+    .fv__chimney {
+        width: 14vh;
+    }
 }
 
 /* PC */
 @media screen and (min-width: 1024px) {
     .fv {
         background-image: url(../img/fv__background--pc.jpg);
-        height: 110vh;
+        /* height: 110vh; */
     }
 
-    .fv__box {
+    /* .fv__box {
         height: 110vh;
-    }
+    } */
 
     .fv__nameBox {
         padding: 5vh;
-        padding-top: 80px;
+        padding-top: 50px;
     }
+
+    /* .fv__house {
+        --house-ratio: 2.0182;
+        PC用SVG: 1441 ÷ 714
+        --roof-ratio: 0.2131;
+        307 ÷ 1441
+    } */
+
+    /* ----- 屋根と煙突 -----*/
+    .fv__roof {
+        /* width: 100%; */
+        height: 20vh;
+    }
+
+    .fv__chimney {
+        left: 20%;
+        width: 16vh;
+        height: 20vh;
+    }
+
+    .fv {
+        --fog-w: 30vw;
+        /* PCでは吹き出しを小さめに */
+        --chimney-x: 20%;
+        --chimney-w: 16vh;
+        --chimney-h: 20vh;
+    }
+
 }
 
 /* ----- Works(スライダー) ----- */

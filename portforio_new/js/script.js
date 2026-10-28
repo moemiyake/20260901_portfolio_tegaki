@@ -1,3 +1,34 @@
+// ハンバーガーメニュー
+const header = document.querySelector('header');
+const hamburger = document.querySelector('.header__hamburger');
+const mobileNavigation = document.querySelector('.header__list--sp');
+
+if (header && hamburger && mobileNavigation) {
+  const setMenuOpen = (isOpen) => {
+    header.classList.toggle('is-open', isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+    mobileNavigation.setAttribute('aria-hidden', String(!isOpen));
+    mobileNavigation.inert = !isOpen;
+  };
+
+  hamburger.addEventListener('click', () => {
+    setMenuOpen(hamburger.getAttribute('aria-expanded') !== 'true');
+  });
+
+  mobileNavigation.addEventListener('click', (event) => {
+    if (event.target.closest('a')) setMenuOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && hamburger.getAttribute('aria-expanded') === 'true') {
+      setMenuOpen(false);
+      hamburger.focus();
+    }
+  });
+}
+
+
 // Swiper 
 document.querySelectorAll('.top__works .mySwiper .top__works__image').forEach((frame) => {
   const image = frame.querySelector('img');
@@ -43,37 +74,6 @@ var swiper = new Swiper('.mySwiper', {
 });
 
 
-
-// ハンバーガーメニュー
-const header = document.querySelector('header');
-const hamburger = document.querySelector('.header__hamburger');
-const mobileNavigation = document.querySelector('.header__list--sp');
-
-if (header && hamburger && mobileNavigation) {
-  const setMenuOpen = (isOpen) => {
-    header.classList.toggle('is-open', isOpen);
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    hamburger.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
-    mobileNavigation.setAttribute('aria-hidden', String(!isOpen));
-    mobileNavigation.inert = !isOpen;
-  };
-
-  hamburger.addEventListener('click', () => {
-    setMenuOpen(hamburger.getAttribute('aria-expanded') !== 'true');
-  });
-
-  mobileNavigation.addEventListener('click', (event) => {
-    if (event.target.closest('a')) setMenuOpen(false);
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && hamburger.getAttribute('aria-expanded') === 'true') {
-      setMenuOpen(false);
-      hamburger.focus();
-    }
-  });
-}
-
 // 「動きを減らす」設定の人にはアニメーションを止める
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -108,4 +108,178 @@ var swiper3 = new Swiper('.mySwiper3', {
   // 1枚分(200px)を進める時間。小さいほど速い(SP: 約40px/秒、PC: 約67px/秒)
   speed: window.innerWidth >= 1024 ? 3000 : 5000,
   autoplay: { delay: 0, disableOnInteraction: false },
+});
+
+
+
+// --- .fadein 設定 ---
+
+// ロボットにやって欲しい事を設定
+const animateFade = (entries, obs) => {
+  // console.log('じゅわっ');
+
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+
+      entry.target.animate(
+        {
+          opacity: [0, 1],
+          filter: ['blur(1rem)', 'blur(0)'],
+        },
+        {
+          duration: 1200,
+          easing: 'ease',
+          fill: 'forwards',
+        }
+      );
+
+      // 一回ふわっとさせたら、監視の対象外にする。
+      obs.unobserve(entry.target);
+    }
+  });
+
+};
+
+const options = {
+  threshold: 0.9,
+};
+
+// 監視ロボット fadeObserber を用意
+const fadeObserber = new IntersectionObserver(animateFade, options);
+
+// 監視するものを設定
+const fadeElements = document.querySelectorAll('.fadein');
+fadeElements.forEach(element => {
+  fadeObserber.observe(element);
+});
+
+
+
+// --- .fadein_2 設定 ---
+
+// ロボットにやって欲しいことを書く
+const animateFade2 = (entries2, obs2) => {
+  // console.log('ふわっ');
+
+  entries2.forEach((entry2) => {
+    if (entry2.isIntersecting) {
+
+      entry2.target.animate(
+        {
+          opacity: [0, 1],
+          filter: ['blur(.5rem)', 'blur(0)'],
+          translate: ['0 5rem', 0],
+
+        },
+        {
+          duration: 1500,
+          easing: 'ease',
+          fill: 'forwards',
+        }
+      );
+
+      // 一回ふわっとさせたら、監視の対象外にする。
+      obs2.unobserve(entry2.target);
+    };
+  });
+};
+
+const options2 = {
+  threshold: 0.8,
+};
+
+// 監視ロボットを用意
+const fadeObserber2 = new IntersectionObserver(animateFade2, options2);
+
+// 監視するものを設定
+const fadeElements2 = document.querySelectorAll('.fadein_2');
+fadeElements2.forEach(element2 => {
+  fadeObserber2.observe(element2);
+});
+
+
+
+
+// --- .fadein_3 設定 ---
+
+// ロボットにやって欲しいことを書く
+const animateFade3 = (entries3, obs3) => {
+  // console.log('はやふわっ');
+
+  entries3.forEach((entry3) => {
+    if (entry3.isIntersecting) {
+
+      entry3.target.animate(
+        {
+          opacity: [0, 1],
+          filter: ['blur(.5rem)', 'blur(0)'],
+          translate: ['0 3rem', 0],
+
+        },
+        {
+          duration: 800,
+          easing: 'ease',
+          fill: 'forwards',
+        }
+      );
+
+      // 一回ふわっとさせたら、監視の対象外にする。
+      obs3.unobserve(entry3.target);
+    };
+  });
+};
+
+const options3 = {
+  threshold: 0.5,
+};
+
+// 監視ロボットを用意
+const fadeObserber3 = new IntersectionObserver(animateFade3, options3);
+
+// 監視するものを設定
+const fadeElements3 = document.querySelectorAll('.fadein_3');
+fadeElements3.forEach(element3 => {
+  fadeObserber3.observe(element3);
+});
+
+
+// --- .fadein_4 設定 ---
+
+// ロボットにやって欲しい事を設定
+const animateFade4 = (entries4, obs4) => {
+  console.log('はやじゅわっ(50%で実行)');
+
+  entries4.forEach((entry4) => {
+    if (entry4.isIntersecting) {
+
+      entry4.target.animate(
+        {
+          opacity: [0, 1],
+          filter: ['blur(1rem)', 'blur(0)'],
+        },
+        {
+          duration: 800,
+          easing: 'ease',
+          fill: 'forwards',
+        }
+      );
+
+      // 一回ふわっとさせたら、監視の対象外にする。
+      obs4.unobserve(entry4.target);
+    }
+  });
+
+};
+
+const options4 = {
+  threshold: 0.5,
+};
+
+// 監視ロボット fadeObserber を用意
+const fadeObserber4 = new IntersectionObserver(animateFade4, options4);
+
+// 監視するものを設定
+const fadeElements4 = document.querySelectorAll('.fadein_4');
+fadeElements4.forEach(element4 => {
+  fadeObserber4.observe(element4);
 });
