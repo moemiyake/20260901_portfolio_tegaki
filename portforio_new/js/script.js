@@ -168,11 +168,11 @@ const animateFade2 = (entries2, obs2) => {
         {
           opacity: [0, 1],
           filter: ['blur(.5rem)', 'blur(0)'],
-          translate: ['0 5rem', 0],
+          translate: ['0 3rem', 0],
 
         },
         {
-          duration: 1500,
+          duration: 2000,
           easing: 'ease',
           fill: 'forwards',
         }
@@ -185,7 +185,7 @@ const animateFade2 = (entries2, obs2) => {
 };
 
 const options2 = {
-  threshold: 0.8,
+  threshold: 0.3,
 };
 
 // 監視ロボットを用意
@@ -213,7 +213,7 @@ const animateFade3 = (entries3, obs3) => {
         {
           opacity: [0, 1],
           filter: ['blur(.5rem)', 'blur(0)'],
-          translate: ['0 3rem', 0],
+          translate: ['0 2rem', 0],
 
         },
         {

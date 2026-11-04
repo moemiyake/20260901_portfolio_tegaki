@@ -35,6 +35,8 @@
     /* RGB値(rgba(var(--xxx-rgb), 0.5) の形で使う) */
     --color-blue-rgb: 85, 159, 183;
     --color-skyblue-rgb: 132, 181, 197;
+    --color-moegi-rgb: 170, 207, 83;
+    --color-text-g-rgb: 179, 179, 179;
 
     /* 線・枠 */
     --color-border: #777;
@@ -782,3 +784,22 @@ header.is-open span:nth-child(2) {
     }
 }
 */
+
+/* JSのアニメーション(最初は非表示にしておく) */
+.fadein {
+    opacity: 0;
+}
+
+.fadein_2 {
+    opacity: 0;
+    translate: 0 3rem;
+}
+
+.fadein_3 {
+    opacity: 0;
+    translate: 0 2rem;
+}
+
+.fadein_4 {
+    opacity: 0;
+}

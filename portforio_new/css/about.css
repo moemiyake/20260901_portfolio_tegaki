@@ -73,17 +73,49 @@
 }
 
 .skill {
+    position: relative;
     width: 100%;
-    background-color: var(--color-gray);
+    height: 100%;
+    z-index: 1;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* 子要素がはみ出さないようにする */
 }
+
+.skill::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    background-image: url(../img/fv__background--sp.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* 背景を固定 */
+    filter: blur(5px); /* ブラー効果 */ 
+    opacity: 0.4;
+
+    z-index: -1;
+}
+
 
 /* 後ろのカードが傾いて見える分、上下に余白を足す(.about section より強く) */
 .about .skill {
     padding: 50px 0 90px;
+}
+
+.about .about__title {
+    /* 白い影をつける */
+    text-shadow: 0 0 10px var(--color-white);
+}
+
+.about .swiper2-pagination .swiper-pagination-bullet,
+.about .swiper2-pagination .swiper-pagination-bullet-active {
+    text-shadow: 0 0 10px var(--color-white);
 }
 
 /* カード本体。縁取りをもえぎ色にして、重なったときに後ろのカードも見分けられるようにする
@@ -99,7 +131,8 @@
     background-color: var(--color-white);
     border: 1px solid var(--color-gray);
     border-radius: 36px;
-    box-shadow: 0 10px 24px rgba(var(--color-blue-rgb), 0.18);
+    /* box-shadow: 0 10px 24px rgba(var(--color-text-g-rgb), 0.5); */
+    box-shadow: 0 10px 24px rgba(var(--color-moegi-rgb), 0.2);
     width: 100%;
     height: 100%;
     display: flex;
@@ -146,7 +179,9 @@
 .skill__line {
     width: 100%;
     flex-shrink: 0;
-    border-bottom: 3px dotted var(--color-moegi);
+    /* border-bottom: 3px dotted var(--color-moegi); */
+    border-bottom: 3px dotted var(--color-gray);
+    border-radius: 2px;
 }
 
 .skill__text {
@@ -208,7 +243,7 @@
         width: 0;
         align-self: stretch;
         border-bottom: none;
-        border-left: 3px dotted var(--color-moegi);
+        border-left: 3px dotted var(--color-gray);
     }
 
     .skill__text {
